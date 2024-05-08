@@ -2,6 +2,7 @@ export enum COMMON_ROUTES_NAMES {
 	HOME = '/',
 	AUTH = '/auth',
 	ORDERS = '/orders',
+	CREATE_ORDER = '/create_order',
 }
 
 export enum ADMIN_ROUTES_NAMES {
@@ -10,9 +11,4 @@ export enum ADMIN_ROUTES_NAMES {
 	TABLES = '/tables',
 }
 
-export enum GARSON_ROUTES_NAMES {
-	TABLES = '/tables',
-	MENUS = '/menus',
-}
-
-export type ROUTES_NAMES = COMMON_ROUTES_NAMES & ADMIN_ROUTES_NAMES & GARSON_ROUTES_NAMES
+export type ROUTES_NAMES = COMMON_ROUTES_NAMES & ADMIN_ROUTES_NAMES
