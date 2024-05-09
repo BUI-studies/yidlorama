@@ -1,16 +1,18 @@
 import { FC } from 'react'
 import { Outlet } from 'react-router-dom'
+import Header from './Header'
+import Footer from './Footer'
+
+import './index.scss'
 
 const Root: FC = () => {
 	return (
 		<>
-			<header>
-				<h1>Ї-dlorama</h1>
-			</header>
+			<Header />
 			<main>
 				<Outlet />
 			</main>
-			<footer>©БУЙ studies - 2024</footer>
+			<Footer />
 		</>
 	)
 }
