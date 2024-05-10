@@ -7,26 +7,31 @@ import {
 	signOut,
 	User,
 } from 'firebase/auth'
+import { setNewUserRoleData } from '../firestore'
 import { app } from '../main'
 import { IAuthProps, INewUserProps } from './types'
+import { ROLES } from '@/types'
 
 export const auth = getAuth(app)
 
 /**
  * Function creates a new user and automatically signs in with new user credentials.
  *
- * @param {string} email - new user's e-mail;
- * @param {string} password - new user's password;
  * @param {string} firstName - new user's first name;
  * @param {string} lastName - new user's last name;
+ * @param {ROLES} role - new user's role in the system (admin or garson);
+ * @param {string} email - new user's e-mail;
+ * @param {string} password - new user's password;
  */
-export const createNewUser = async ({ email, password, firstName, lastName }: INewUserProps): Promise<void> => {
+export const createNewUser = async ({ firstName, lastName, role, email, password }: INewUserProps): Promise<void> => {
 	try {
 		const newUser = await createUserWithEmailAndPassword(auth, email, password)
 
-		updateProfile(newUser.user, {
+		await updateProfile(newUser.user, {
 			displayName: `${firstName} ${lastName}`,
 		})
+
+		await setNewUserRoleData({ role: role as ROLES, uid: newUser.user.uid })
 	} catch (error) {
 		throw new Error(`AN ERROR OCCURED: ${error}`)
 	}
