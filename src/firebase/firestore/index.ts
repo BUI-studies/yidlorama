@@ -20,11 +20,11 @@ export const setNewUserRoleData = async ({ role, uid }: UserRoleData): Promise<v
 
 /**
  * Function gets user role data from firestore according to user's uid.
- * 
- * @param {string} uid - current user's uid; 
+ *
+ * @param {string} uid - current user's uid;
  * @returns a current user's role in the system.
  */
-export const getUserRoleData = async (uid: string): Promise<string | undefined> => {
+export const getUserRoleData = async (uid: string | undefined): Promise<string | undefined> => {
 	let currentUserRole
 	const q = query(collection(db, 'users'), where('uid', '==', uid))
 	try {
