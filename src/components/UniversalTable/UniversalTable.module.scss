@@ -2,29 +2,34 @@
 
 .TableContainer {
   margin: 100px auto;
+  color: $tableMain;
   width: $contentContainerWidth;
 
   
   .TableHeader:nth-child(odd) {
-    background-color: $mainGray;
+    background-color: $lightGray;
   }
   .TableRow:nth-child(odd) {
-    background-color: $mainGray;
-  }
-
-  .TableRow:nth-child(even) {
     background-color: $lightGray;
+  }
+  
+  .TableRow:nth-child(even) {
+    background-color: $mainGray;
   }
 }
 
 .TableHeader {
+  position: relative;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  // &Cell {
-
-  // }
+  z-index: 1;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.458);
+  &Cell {
+    padding-left: 20px;
+    text-align: start;
+    
+  }
 }
 
 .TableRow {
@@ -32,8 +37,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 
-
-  // &Cell {
-    
-  // }
+  &Cell {
+    padding-left: 20px;
+    text-align: start;
+  }
 }
