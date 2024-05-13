@@ -1,5 +1,9 @@
 const Menu = () => {
-	return <h2>Menu</h2>
+	return (
+	<>
+		<h2>Menu</h2>
+	</>)
+
 }
 
 export default Menu
