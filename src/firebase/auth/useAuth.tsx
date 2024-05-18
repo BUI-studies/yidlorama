@@ -15,6 +15,7 @@ const useAuth = () => {
 	}, [])
 
 	return { user: currentUser, role: currentUserRole }
+
 }
 
 export default useAuth
