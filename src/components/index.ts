@@ -1,1 +1,1 @@
-
+export { default as DishGroup } from './DishGroup/DishGroup';

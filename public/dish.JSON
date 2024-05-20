@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Classic Borscht",
+    "price": 7.99,
+    "description": "A traditional beet soup with a rich, hearty flavor, served with sour cream.",
+    "quantity": 10,
+    "id": 1
+  },
+  {
+    "name": "Green Borscht",
+    "price": 8.49,
+    "description": "A refreshing variation made with sorrel, giving it a distinct tangy taste.",
+    "quantity": 15,
+    "id": 2
+  },
+  {
+    "name": "Chicken Borscht",
+    "price": 9.29,
+    "description": "A wholesome beet soup with tender chicken pieces, adding a rich, savory depth.",
+    "quantity": 8,
+    "id": 3
+  },
+  {
+    "name": "Vegan Borscht",
+    "price": 8.99,
+    "description": "A delicious, plant-based version of the classic, made with fresh vegetables and no animal products.",
+    "quantity": 12,
+    "id": 4
+  },
+  {
+    "name": "Borscht with Dumplings",
+    "price": 10.49,
+    "description": "Traditional beet soup served with soft, savory dumplings for added texture and flavor.",
+    "quantity": 7,
+    "id": 5
+  },
+  {
+    "name": "Spicy Borscht",
+    "price": 9.99,
+    "description": "A fiery take on the traditional borscht, spiced with chili peppers for extra heat.",
+    "quantity": 5,
+    "id": 6
+  },
+  {
+    "name": "Beef Borscht",
+    "price": 11.49,
+    "description": "Hearty borscht made with tender beef chunks, adding rich, meaty flavors.",
+    "quantity": 9,
+    "id": 7
+  },
+  {
+    "name": "Cold Borscht",
+    "price": 8.79,
+    "description": "A chilled version of the classic beet soup, perfect for hot summer days.",
+    "quantity": 20,
+    "id": 8
+  },
+  {
+    "name": "Mushroom Borscht",
+    "price": 9.59,
+    "description": "A savory borscht made with a variety of wild mushrooms for an earthy, umami flavor.",
+    "quantity": 14,
+    "id": 9
+  },
+  {
+    "name": "Borscht with Pork",
+    "price": 10.99,
+    "description": "Rich and filling beet soup made with tender pork pieces.",
+    "quantity": 11,
+    "id": 10
+  },
+  {
+    "name": "Seafood Borscht",
+    "price": 12.49,
+    "description": "An exotic variation made with a mix of fresh seafood, giving it a unique twist.",
+    "quantity": 6,
+    "id": 11
+  },
+  {
+    "name": "Sweet and Sour Borscht",
+    "price": 8.99,
+    "description": "A flavorful blend of sweet and sour tastes, made with a mix of beets and vinegar.",
+    "quantity": 13,
+    "id": 12
+  },
+  {
+    "name": "Borscht with Beans",
+    "price": 9.19,
+    "description": "A protein-rich version of the classic beet soup, with added beans for extra nutrition.",
+    "quantity": 18,
+    "id": 13
+  },
+  {
+    "name": "Garlic Borscht",
+    "price": 9.39,
+    "description": "Borscht with a strong garlic flavor, perfect for garlic lovers.",
+    "quantity": 15,
+    "id": 14
+  },
+  {
+    "name": "Borscht with Cabbage",
+    "price": 8.69,
+    "description": "A classic borscht enhanced with crunchy cabbage for added texture.",
+    "quantity": 17,
+    "id": 15
+  }
+]
