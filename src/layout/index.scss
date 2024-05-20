@@ -1,0 +1,37 @@
+.nav {
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 15px;
+        height: 56px; 
+        background-color: #9F9F9F;
+    }
+
+    &__logo {
+        margin-left: 20px;
+        font-size: 24px;
+        font-weight: 400;
+        color: #000000
+    }
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+        &-item {
+            font-size: 15px;
+            font-weight: 400;
+            color: #FFFFFF
+        }
+    }
+    
+    &__auth{
+        &-login {
+            margin-right: 20px;
+            font-size: 15px;
+            font-weight: 400;
+            color: #000000
+        }
+    }
+}

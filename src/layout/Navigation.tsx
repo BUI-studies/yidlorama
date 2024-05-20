@@ -1,16 +1,31 @@
 import { Link } from 'react-router-dom'
-import { COMMON_ROUTES_NAMES } from '@/routing'
+import { useAuth } from '@/firebase'
+import { createNavMenu } from './helpers'
 
 const Navigation = () => {
+	const currentUser = useAuth()
+	// console.log(currentUser);
+	const user = currentUser?.user;
+	const role = currentUser?.role
+	
+	// const user = true
+	// const role = 'admin'
+
+	const navigationMenu = createNavMenu(role)
+	
 	return (
-		<nav>
-			{Object.values(COMMON_ROUTES_NAMES).map((url, ind) => (
-				<Link
-					key={`${url}--${ind}`}
-					to={url}
-				/>
-			))}
-		</nav>
+		<>
+		{user && (
+			<nav className="nav__menu">
+				{navigationMenu.map((item) => (
+					<Link className='nav__menu-item'
+						key={item.id}
+						to={item.url}
+					>{item.title}</Link>
+				))}
+			</nav>
+		)}
+		</>
 	)
 }
 
