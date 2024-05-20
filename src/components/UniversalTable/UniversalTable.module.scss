@@ -1,12 +1,12 @@
 @import "../../app/variables.scss";
 
-.TableContainer {
+.tableContainer {
   margin: 100px auto;
   color: $tableMain;
   width: $contentContainerWidth;
 }
 
-.TableHeader {
+.tableHeader {
   position: relative;
   width: 100%;
   display: grid;
@@ -19,7 +19,7 @@
   }
 }
 
-.TableRow {
+.tableRow {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -33,7 +33,7 @@
   }
 }
 
-.TableCell {
+.tableCell {
   padding-left: 20px;
   text-align: start;
 }

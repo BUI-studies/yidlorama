@@ -4,13 +4,13 @@ import { UniversalTableProps } from './types';
 
 const UniversalTable = <T,>({data, headers}:UniversalTableProps<T>):ReactNode => {
   return (
-      <div className={classes.TableContainer}>
-        <ul className={classes.TableHeader}>
-          {headers.map((header)=> <li key={header.title} className={classes.TableCell}>{header.title}</li>)}
+      <div className={classes.tableContainer}>
+        <ul className={classes.tableHeader}>
+          {headers.map((header)=> <li key={header.title} className={classes.tableCell}>{header.title}</li>)}
         </ul>
         {data.map((row, rowIndex) => (
-          <ul key={rowIndex} className={classes.TableRow}>
-            {headers.map((header, cellIndex)=> <li key={cellIndex} className ={classes.TableCell}>{row[header.property]}</li>)}
+          <ul key={rowIndex} className={classes.tableRow}>
+            {headers.map((header, cellIndex)=> <li key={cellIndex} className ={classes.tableCell}>{row[header.property]}</li>)}
           </ul>
         ))}
       </div>
