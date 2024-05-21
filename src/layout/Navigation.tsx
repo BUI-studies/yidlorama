@@ -1,30 +1,45 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+import { COMMON_ROUTES_NAMES } from '@/routing'
+import { logOut } from '@/firebase'
+import { logIn } from '@/firebase'
 import { useAuth } from '@/firebase'
 import { createNavMenu } from './helpers'
 
 const Navigation = () => {
-	const currentUser = useAuth()
-	// console.log(currentUser);
-	const user = currentUser?.user;
-	const role = currentUser?.role
-	
-	// const user = true
-	// const role = 'admin'
+	const {user, role} = useAuth()
 
-	const navigationMenu = createNavMenu(role)
-	
 	return (
 		<>
 		{user && (
 			<nav className="nav__menu">
-				{navigationMenu.map((item) => (
+				{role && createNavMenu(role).map((item) => (
 					<Link className='nav__menu-item'
 						key={item.id}
 						to={item.url}
 					>{item.title}</Link>
 				))}
-			</nav>
+			</nav> 	
 		)}
+		<div className="nav__auth">
+			{!user && (
+				<NavLink
+				className="nav__auth-link"
+				to={COMMON_ROUTES_NAMES.AUTH}
+				onClick={() => logIn({email: "test-admin@gmail.com", password: "123456"})}
+				>
+					Log in
+				</NavLink>
+			)}
+			{user && (
+				<NavLink
+				className="nav__auth-link"
+				to={COMMON_ROUTES_NAMES.AUTH}
+				onClick={() => logOut()}
+				>
+					Log out
+				</NavLink>
+			)}
+		</div>
 		</>
 	)
 }

@@ -1,7 +1,7 @@
 import { COMMON_ROUTES_NAMES, GARSON_ROUTES_NAMES, ADMIN_ROUTES_NAMES } from '@/routing'
 import { NavMenu } from './type';
 
-export const createNavMenu = (role: string) => {
+export const createNavMenu = (role: string | undefined) => {
     let navMenu: NavMenu[] = []
 	
 	if (role === 'garson') {
