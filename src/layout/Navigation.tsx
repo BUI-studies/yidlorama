@@ -25,7 +25,7 @@ const Navigation = () => {
 				<NavLink
 				className="nav__auth-link"
 				to={COMMON_ROUTES_NAMES.AUTH}
-				onClick={() => logIn({email: "test-admin@gmail.com", password: "123456"})}
+				onClick={() => logIn({email: "test-admin@gogi.com", password: "!Goga-but-Gogi!"})}
 				>
 					Log in
 				</NavLink>
