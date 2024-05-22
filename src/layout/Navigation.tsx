@@ -1,46 +1,41 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { COMMON_ROUTES_NAMES } from '@/routing'
-import { logOut } from '@/firebase'
-import { logIn } from '@/firebase'
-import { useAuth } from '@/firebase'
+import { logOut, useAuth } from '@/firebase'
 import { createNavMenu } from './helpers'
+import classes from './Header.module.scss'
 
-const Navigation = () => {
-	const {user, role} = useAuth()
+const Navigation = () => { 
+	const { user, role } = useAuth()
 
-	return (
-		<>
+	const authBtnText = user ? 'Log out' : 'Log in'
+
+return (
+	<>
 		{user && (
-			<nav className="nav__menu">
-				{role && createNavMenu(role).map((item) => (
-					<Link className='nav__menu-item'
-						key={item.id}
-						to={item.url}
-					>{item.title}</Link>
-				))}
-			</nav> 	
+			<nav className={classes.headerMenu}>
+				{role &&
+					createNavMenu(role).map(item => (
+						<Link
+							className={classes.menuItem}
+							key={item.id}
+							to={item.url}
+						>
+							{item.title}
+						</Link>
+					))
+				}
+			</nav>
 		)}
-		<div className="nav__auth">
-			{!user && (
-				<NavLink
-				className="nav__auth-link"
+		<div>
+			<Link
+				className={classes.authLink}
 				to={COMMON_ROUTES_NAMES.AUTH}
-				onClick={() => logIn({email: "test-admin@gogi.com", password: "!Goga-but-Gogi!"})}
-				>
-					Log in
-				</NavLink>
-			)}
-			{user && (
-				<NavLink
-				className="nav__auth-link"
-				to={COMMON_ROUTES_NAMES.AUTH}
-				onClick={() => logOut()}
-				>
-					Log out
-				</NavLink>
-			)}
+				onClick={() => (user ? logOut() : null)}
+			>
+				{authBtnText}
+			</Link>
 		</div>
-		</>
+	</>
 	)
 }
 
