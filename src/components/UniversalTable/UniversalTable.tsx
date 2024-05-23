@@ -3,7 +3,7 @@ import classes from './UniversalTable.module.scss';
 import { UniversalTableProps, BaseData } from './types';
 
 
-const renderCell = (value: any): ReactNode => {
+const renderCell = (value: any): string => {
   if (typeof value === 'object') {
     return JSON.stringify(value);
   }
