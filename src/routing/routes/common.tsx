@@ -1,7 +1,6 @@
 import { COMMON_ROUTES_NAMES } from '../routes.names'
-import { Home, Auth, Orders } from '../../pages'
-import { action as userActionAuth } from '../../utils/actionsAuth'
-
+import { Home, Auth, Orders } from '@/pages'
+import { userActionAuth } from '@/actions'
 
 export default [
 	{

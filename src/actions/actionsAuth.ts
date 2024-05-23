@@ -1,7 +1,21 @@
 import { logIn, getCurrentUser } from "@/firebase";
-import { ActionData, ILoginError, AuthActionProps } from './../types/auth';
 
-export const action = async ({ request }: AuthActionProps): Promise<ActionData> => {
+export interface AuthActionProps {
+    request: Request;
+}
+
+export interface IUserData {
+    status: 'success' | 'error';
+    message?: string;
+    user?: { email: string; password?: string };
+}
+
+export interface ILoginError {
+    error: string,
+    message?: string,
+}
+
+export const action = async ({ request }: AuthActionProps): Promise<IUserData> => {
     const formData = await request.formData();
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
@@ -22,7 +36,3 @@ export const action = async ({ request }: AuthActionProps): Promise<ActionData> 
     }
 }
 
-
-// e-mail: test-admin@gogi.com
-
-// pass: !Goga-but-Gogi!

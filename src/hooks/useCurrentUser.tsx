@@ -1,41 +1,30 @@
 import { useNavigate, useActionData } from "react-router-dom";
 import { useEffect } from "react";
+import { useAuth } from "@/firebase";
 import { COMMON_ROUTES_NAMES, ADMIN_ROUTES_NAMES } from "@/routing";
-import { getCurrentUser } from "@/firebase";
-import { getUserRoleData } from "@/firebase/firestore";
-
-interface ActionData {
-    status: 'success' | 'error';
-    message?: string;
-    user?: { email: string; password: string };
-}
-
+import { IUserData } from "@/actions/actionsAuth";
 
 const useCurrentUser = () => {
     const navigate = useNavigate();
-    const actionData = useActionData() as ActionData;
+    const actionData = useActionData() as IUserData;
+    const { role } = useAuth();
 
     useEffect(() => {
-        const handleRedirect = async () => {
-            if (actionData?.status === 'success') {
-                const currentUser = getCurrentUser();
-                if (currentUser) {
-                    const role = await getUserRoleData(currentUser.uid);
-                    if (role === 'garson') {
-                        navigate(COMMON_ROUTES_NAMES.ORDERS);
-                    } else if (role === 'admin') {
-                        navigate(ADMIN_ROUTES_NAMES.USERS);
-                    } else {
-                        console.error('Unknown role');
-                    }
-                }
+        if (actionData?.status === 'success' && role) {
+            switch (role) {
+                case 'garson':
+                    navigate(COMMON_ROUTES_NAMES.ORDERS);
+                    break;
+                case 'admin':
+                    navigate(ADMIN_ROUTES_NAMES.USERS);
+                    break;
+                default:
+                    console.error('Unknown role');
             }
-        };
+        }
+    }, [actionData, navigate, role]);
 
-        handleRedirect();
-    }, [actionData, navigate]);
-
-    return actionData
+    return actionData;
 }
 
 export default useCurrentUser
