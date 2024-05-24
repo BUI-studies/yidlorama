@@ -1,14 +1,6 @@
-import {  ReactNode } from 'react';
+import { ReactNode } from 'react';
 import classes from './UniversalTable.module.scss';
 import { UniversalTableProps, BaseData } from './types';
-
-
-const renderCell = (value: any): string => {
-  if (typeof value === 'object') {
-    return JSON.stringify(value);
-  }
-  return String(value);
-}
 
 const UniversalTable = <T extends BaseData>({data, headers}:UniversalTableProps<T>):ReactNode => {
   return (
@@ -18,7 +10,7 @@ const UniversalTable = <T extends BaseData>({data, headers}:UniversalTableProps<
         </ul>
         {data.map((row) => (
           <ul key={row.id} className={classes.tableRow}>
-            {headers.map((header)=> <li key={`${row.id}${renderCell(header.property)}`} className ={classes.tableCell}>{renderCell(row[header.property])}</li>)}
+            {headers.map((header)=> <li key={`${row.id}${header.property as string}`} className ={classes.tableCell}>{row[header.property] as string}</li>)}
           </ul>
         ))}
       </div>
