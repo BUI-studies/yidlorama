@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { COMMON_ROUTES_NAMES } from '@/routing'
 import { logOut, useAuth } from '@/firebase'
 import { createNavMenu } from './helpers'
-import classes from './Header.module.scss'
+import classes from './Navigation.module.scss'
 
 const Navigation = () => { 
 	const { user, role } = useAuth()
@@ -16,7 +16,7 @@ return (
 				{role &&
 					createNavMenu(role).map(item => (
 						<Link
-							className={classes.menuItem}
+							className={classes.headerMenuItem}
 							key={item.id}
 							to={item.url}
 						>

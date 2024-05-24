@@ -5,15 +5,11 @@ import { getUserRoleData } from '../firestore'
 
 const useAuth = () => {
 	const [currentUser, setCurrentUser] = useState<User | null>(getCurrentUser())
-	const [currentUserRole, setCurrentUserRole] = useState<string | undefined>(undefined)
+
+	const currentUserRole = currentUser && getUserRoleData(currentUser?.uid)
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, user => {
-			setCurrentUser(user)
-			if (user) {
-				getUserRoleData(user.uid).then(role => setCurrentUserRole(role))
-			} else setCurrentUserRole(undefined)
-		})
+		const unsubscribe = onAuthStateChanged(auth, user => setCurrentUser(user))
 
 		return () => unsubscribe()
 	}, [])
