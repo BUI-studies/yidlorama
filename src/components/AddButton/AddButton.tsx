@@ -1,9 +1,11 @@
-import classes from './AddButton.module.scss'
+import { FC } from 'react'
+import classes from './addButton.module.scss'
 
 type AddButtonProps = {
     action: () => void
 }
-const AddButton = ({action}:AddButtonProps) => {
+
+const AddButton: FC<AddButtonProps> = ({action}) => {
     return (
         <button
             className={classes.AddButton}
