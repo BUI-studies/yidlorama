@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import classes from './addButton.module.scss'
+import classes from './AddButton.module.scss'
 
 type AddButtonProps = {
     action: () => void
@@ -8,7 +8,7 @@ type AddButtonProps = {
 const AddButton: FC<AddButtonProps> = ({action}) => {
     return (
         <button
-            className={classes.AddButton}
+            className={classes.addButton}
             onClick={action}>
         </button>
     )
