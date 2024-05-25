@@ -1,1 +1,1 @@
-export { default as DishGroup } from './DishGroup/DishGroup';
+export { default as DishGroup } from './Card/Card';
