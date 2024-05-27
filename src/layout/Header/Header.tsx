@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { COMMON_ROUTES_NAMES } from '@/routing'
-import Navigation from './Navigation'
+import Navigation from '../Navigation/Navigation'
 import logoPath from '@/assets/logo.svg'
 import classes from './Header.module.scss'
 
