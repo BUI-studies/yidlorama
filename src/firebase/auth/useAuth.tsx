@@ -1,20 +1,23 @@
 import { useState, useEffect } from 'react'
-import { getCurrentUser, auth } from './index'
-import { User, onAuthStateChanged } from 'firebase/auth'
+import { auth } from './index'
+import { onAuthStateChanged } from 'firebase/auth'
 import { getUserRoleData } from '../firestore'
+import { Auth } from './types'
+import { ROLES } from '@/types'
 
 const useAuth = () => {
-	const [currentUser, setCurrentUser] = useState<User | null>(getCurrentUser())
-
-	const currentUserRole = currentUser && getUserRoleData(currentUser?.uid)
+	const [user, setUser] = useState<Auth>({ user: null, role: undefined })
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, user => setCurrentUser(user))
+		const unsubscribe = onAuthStateChanged(auth, async user => {
+			const role = user && (await getUserRoleData(user?.uid))
+			setUser({ user: user, role: role as ROLES })
+		})
 
 		return () => unsubscribe()
 	}, [])
 
-	return { user: currentUser, role: currentUserRole }
+	return { user: user.user, role: user.role }
 }
 
 export default useAuth
