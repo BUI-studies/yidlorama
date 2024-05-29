@@ -1,18 +1,25 @@
 @import "../../app/variables.scss";
 
 .tableContainer {
+  width: 100%;
   margin: 100px auto;
   color: $white;
   width: $contentContainerWidth;
 }
 
 .tableHeader {
-  position: relative;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   z-index: 1;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.458);
+}
+
+.tableHeader,
+.tableRow {
+  position: relative;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  justify-content: space-around;
+
 
   &:nth-child(odd) {
     background-color: $lightGray;
@@ -20,20 +27,20 @@
 }
 
 .tableRow {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-
-  &:nth-child(odd) {
-    background-color: $lightGray;
-  }
-
   &:nth-child(even) {
     background-color: $mainGray;
   }
 }
 
 .tableCell {
-  padding-left: 20px;
   text-align: start;
+  width: 100%;
+
+  &:nth-last-child(1) {
+    text-align: end;
+  }
+
+  &Headers{
+    font-weight: 700;
+  }
 }
