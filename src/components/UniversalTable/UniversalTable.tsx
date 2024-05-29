@@ -10,7 +10,7 @@ const UniversalTable = <T extends BaseData>({data, headers}:UniversalTableProps<
         </ul>
         {data.map((row) => (
           <ul key={row.id} className={classes.tableRow}>
-            {headers.map((header)=> <li key={`${row.id}${header.property as string}`} className ={classes.tableCell}>{row[header.property] as string}</li>)}
+            {headers.map((header)=> <li key={`${row.id}${header.property as string}`} className={classes.tableCell}>{row[header.property] as string}</li>)}
           </ul>
         ))}
       </div>
