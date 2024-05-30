@@ -1,0 +1,19 @@
+.header {
+    &Menu {
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+        &Item {
+            font-size: 15px;
+            font-weight: 400;
+            color: #FFFFFF
+        }
+    }
+}
+
+.authLink {
+    margin-right: 20px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000000;
+}
