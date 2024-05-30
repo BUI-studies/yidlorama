@@ -1,5 +1,4 @@
 import { FC, ReactNode } from 'react';
-import { K } from './types';
 import classes from './Card.module.scss';
 
  type CardProps = {
