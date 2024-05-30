@@ -8,15 +8,17 @@ const Card: FC<{data: K}> = ({data}) => {
       const categoryTitle = Object.keys(category)[0];
       const items = category[categoryTitle];
       const categoryItems = items.map((item) => 
-        <div className={classes.cardItem}>
-          <p>{item.name}</p>
-          <p>{item.price}</p>
+        <div className={classes.cardListItem}>
+          <p className={classes.cardListItemName}>{item.name}</p>
+          <p className={classes.cardListItemValue}>{item.price}</p>
         </div>
       )
       return (
         <div className={classes.card}>
           <h2 className={classes.cardTitle}>{categoryTitle}</h2>
-          {categoryItems}
+          <div className={classes.cardList}>
+            {categoryItems}
+          </div>
         </div>
       )
     })
