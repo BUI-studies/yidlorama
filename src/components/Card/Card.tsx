@@ -2,12 +2,15 @@ import { FC, ReactNode } from 'react';
 import { K } from './types';
 import classes from './Card.module.scss';
 
-const Card: FC<{data: K}> = ({data}) => {
-  return (
-    data.map((category)=> {
-      const categoryTitle = Object.keys(category)[0];
-      const items = category[categoryTitle];
-      const categoryItems = items.map((item) => 
+ type CardProps = {
+  title: string;
+  data: {
+    [k: string]: string;
+  }[];
+ }
+
+const Card: FC<CardProps> = ({title, data}) => {
+      const categoryItems = data.map((item) => 
         <div className={classes.cardListItem}>
           <p className={classes.cardListItemName}>{item.name}</p>
           <p className={classes.cardListItemValue}>{item.price}</p>
@@ -15,14 +18,12 @@ const Card: FC<{data: K}> = ({data}) => {
       )
       return (
         <div className={classes.card}>
-          <h2 className={classes.cardTitle}>{categoryTitle}</h2>
+          <h2 className={classes.cardTitle}>{title}</h2>
           <div className={classes.cardList}>
             {categoryItems}
           </div>
         </div>
       )
-    })
-  )
 }
 
 export default Card;
