@@ -1,5 +1,5 @@
 import { useActionData, Form, useNavigate } from "react-router-dom";
-import { COMMON_ROUTES_NAMES, ADMIN_ROUTES_NAMES } from "@/routing";
+import { COMMON_ROUTES_NAMES } from "@/routing";
 import { AuthActionData } from '@/actions'
 import styles from './Auth.module.scss';
 import { useAuth } from "@/firebase";
@@ -9,22 +9,12 @@ import { useEffect } from "react";
 
 const Auth = () => {
 	const actionData = useActionData() as AuthActionData | undefined;
-	console.log(actionData);
 	const { role } = useAuth();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (actionData?.status === AuthStatus.Success && role) {
-			switch (role) {
-				case ROLES.GARSON:
-					navigate(COMMON_ROUTES_NAMES.ORDERS);
-					break;
-				case ROLES.ADMIN:
-					navigate(ADMIN_ROUTES_NAMES.USERS);
-					break;
-				default:
-					console.error('Unknown role');
-			}
+		if (actionData?.status === AuthStatus.Success && Object.values(ROLES).includes(role!)) {
+			navigate(COMMON_ROUTES_NAMES.HOME);
 		}
 	}, [actionData?.status, role, navigate])
 
