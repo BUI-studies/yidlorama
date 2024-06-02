@@ -17,7 +17,7 @@ const useAuth = () => {
 		return () => unsubscribe()
 	}, [])
 
-	
+
 
 	return { user: user.user, role: user.role }
 }
