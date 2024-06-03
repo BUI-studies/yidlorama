@@ -17,7 +17,9 @@ const useAuth = () => {
 		return () => unsubscribe()
 	}, [])
 
+
+
 	return { user: user.user, role: user.role }
 }
 
-export default useAuth
+export default useAuth;
