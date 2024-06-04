@@ -1,0 +1,55 @@
+@import "../../app/variables.scss";
+
+.table {
+  &Container {
+    width: 100%;
+    margin: 100px auto;
+    color: $white;
+    width: $contentContainerWidth;
+  }
+  
+  &Header {
+    z-index: 1;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.458);
+    position: relative;
+    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    justify-content: space-around;
+  
+  
+    &:nth-child(odd) {
+      background-color: $lightGray;
+    }
+  }
+
+  &Row {
+    position: relative;
+    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    justify-content: space-around;
+  
+  
+    &:nth-child(odd) {
+      background-color: $lightGray;
+    }
+    
+    &:nth-child(even) {
+      background-color: $mainGray;
+    }
+  }
+  
+  &Cell {
+    text-align: start;
+    width: 100%;
+  
+    &:nth-last-child(1) {
+      text-align: end;
+    }
+  
+    &Headers{
+      font-weight: 700;
+    }
+  }
+}
