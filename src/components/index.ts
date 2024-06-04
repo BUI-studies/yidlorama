@@ -1,1 +1,1 @@
-export { default as UniversalTable } from './UniversalTable/UniversalTable';
+export { default as Card } from './Card/Card';
