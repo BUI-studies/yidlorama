@@ -1,7 +1,7 @@
 import { FC, ReactNode, useState, useEffect } from 'react';
 import { Button } from '../index';
 import { SVG } from '../../../public/SVG';
-import classes from './Modal.module.css';
+import classes from './Modal.module.scss';
 
 type ModalProps = {
   isOpen: boolean;
@@ -26,7 +26,7 @@ const Modal: FC<ModalProps> = ({ isOpen = true, onClose, content }) => {
       {open &&
       (<div className={classes.container}>
         <div className={classes.modal}>
-          <button className={classes.modalSVG} onClick={handleClose}>{SVG.closeIcon}</button>
+          <div className={classes.modalSVG} onClick={handleClose}>{SVG.closeIcon}</div>
           <div className={classes.modalContent}>
             {content}
           </div>
