@@ -21,6 +21,7 @@ export enum InputType {
 }
 
 export type InputsProps = {
+   id: string;
    type: InputType;
    placeHolder: string;
    name: string;
