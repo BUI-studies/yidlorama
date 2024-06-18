@@ -9,18 +9,16 @@ type ModalProps = {
   content: ReactNode;
 };
 
-const Modal: FC<ModalProps> = ({ isOpen = true, onClose, content }) => {
+const Modal: FC<ModalProps> = ({ isOpen = true, onClose = () => console.log('Форма закрита нічого не відправилось'), content }) => {
   const [open, setOpen] = useState(isOpen);
-  useEffect(() => {
-    setOpen(isOpen)
-  }, [isOpen]);
 
   const handleClose = () => {
-    setOpen(false);
+    setOpen(!open);
     if (onClose) {
       onClose();
     }
   };
+
   return (
     <>
       {open &&

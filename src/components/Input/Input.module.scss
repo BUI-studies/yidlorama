@@ -8,7 +8,7 @@
   font-size: 10px;
   top: -15px;
   left: 79px;
-  // color: red;
+  color: rgb(110, 65, 65);
 }
 
 .inputContainer{
@@ -17,7 +17,8 @@
   position: relative;
 }
 
-.input {;
+.input {
+  box-sizing: content-box;
   width: 50%;
   margin: 0px auto 20px;
   background-color: $mainGray;
