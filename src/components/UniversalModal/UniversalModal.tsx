@@ -1,59 +1,32 @@
-import { FC, useState, useEffect, useCallback, useRef } from 'react'
-import Portal from '../Portal/Portal'
-import { createContainer } from './helpers'
-import type { MouseEventHandler } from 'react'
-import { ModalProps } from './types'
+import { FC, ReactNode, SetStateAction, Dispatch } from 'react'
+import { CloseBtn } from './CloseBtn'
 import classes from './UniversalModal.module.scss'
 
-const MODAL_CONTAINER_ID = 'modal-container-id'
+type ModalProps = {
+    children: ReactNode
+    title: string
+    visible: boolean
+    setVisible: Dispatch<SetStateAction<boolean>>
+}
 
 const UniversalModal:FC<ModalProps> = (props) => {
-    const { onClose, title, children } = props
-    const rootRef = useRef<HTMLDivElement>(null)
-    const [isMounted, setMounted] = useState(false)
-
-    useEffect(() => {
-        createContainer({ id: MODAL_CONTAINER_ID })
-        setMounted(true)
-    }, [])
-
-    useEffect(() => {
-        const handleWrapperClick = (event: MouseEvent) => {
-            const { target } = event
-            if (target instanceof Node && rootRef.current === target) {
-                onClose?.()
-            }
-        }
-        window.addEventListener("click", handleWrapperClick)
-        return () => {
-            window.removeEventListener("click", handleWrapperClick)
-        }
-    }, [onClose])
+    const { children, title, visible, setVisible  } = props
     
-    
-    const handleClose: MouseEventHandler<HTMLDivElement | HTMLButtonElement> = 
-        useCallback(() => {
-            onClose?.()
-        }, [onClose])
+    const rootClasses = [classes.modal]
+    visible ? rootClasses.push(classes.active) : null
 
 	return (
-		<>
-            {isMounted && (   
-                <Portal id={MODAL_CONTAINER_ID}>
-                    <div className={classes.modalWrapper} ref={rootRef}>
-                        <div className={classes.modalContent}>
-                            <button className={classes.modalBtnClose}
-                                onClick={handleClose}
-                            >
-                                x
-                            </button>
-                            <h2 className={classes.modalTitle}>{title}</h2>
-                            {children}
-                        </div>
-                    </div>
-                </Portal>       
-            )}
-		</>
+        <div className={rootClasses.join(' ')} onClick={() => setVisible(false)}>
+            <div className={classes.modalContent} onClick={(e) => e.stopPropagation()}>
+                <div className={classes.modalBtnClose} onClick={() => setVisible(false)}>
+                    {CloseBtn.closeIcon}
+                </div>
+                <h2 className={classes.modalTitle}>
+                    {title}
+                </h2>
+                {children}
+            </div>
+        </div>
 	)
 }
 

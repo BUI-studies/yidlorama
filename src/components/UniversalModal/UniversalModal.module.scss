@@ -1,65 +1,43 @@
-@import '../../app/variables.scss';
+@import "../../app/variables.scss";
 
-.modal {
-    &Wrapper {
-        backdrop-filter: blur(1.5px);
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-    }
-    &Content {
-        padding: 20px;
-        border: 1px solid $white;
+.modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+    backdrop-filter: blur(1.5px);
 
+    &BtnClose{
         position: relative;
-        background-color: lightgray;
-        overflow: hidden;
-        color: black;
-        cursor: initial;
-
-        &:last-child {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-    &BtnClose {
-        position: absolute;
-        width: 2em;
-        height: 2em;
-        padding: 0;
-        margin: 0;
-        right: 0px;
-        top: 0px;
+        margin-left: auto;
+        order: 2;
+        width: 1em;
+        height: 1em;
+        border-radius: 5px;
+        background-color: $lightGray;
         cursor: pointer;
-        color: rgb(0, 0, 0, 0.6);
-
-        background-color: transparent;
-        border-color: transparent;
-        outline: transparent;
-        border-radius: 0px;
-        transition: all 0.2s;
-        &:hover {
-            color: rgb(0, 0, 0, 1);
-            border-color: transparent;
-        }
-        &:focus,
-        &:focus-visible {
-            outline: transparent;
-        }
     }
     &Title {
         text-align: center;
-        margin-bottom: 10px;
+        margin: 10px 0;
         font-weight: 600;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 20px;
         color: black;
+    }
+    &Content{
+        padding: 20px;
+        border: 1px solid $white;
+        background-color: $lightGray;
+        overflow: hidden;
+        color: black;
+        cursor: initial;
+    }
+    &.active{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
