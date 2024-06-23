@@ -20,10 +20,11 @@ export type SelectOption = {
 export type InputElementProps = {
   id: string;
   type: InputType;
-  placeHolder: string;
+  placeHolder?: string;
   name: string;
   required?: boolean | undefined;
   options?: SelectOption[];
   onChange?: () => void;
   value?: string;
+  label?: string;
 }
