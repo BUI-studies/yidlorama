@@ -9,12 +9,10 @@ type ModalProps = {
     setVisible: Dispatch<SetStateAction<boolean>>
 }
 
-const UniversalModal:FC<ModalProps> = (props) => {
-    const { children, title, visible, setVisible  } = props
-    
-    const rootClasses = [classes.modal]
-    visible ? rootClasses.push(classes.active) : null
+const UniversalModal:FC<ModalProps> = ({ children, title, visible, setVisible  }) => {
 
+    const rootClasses: string[] = [classes.modal, visible ? classes.active : '']
+    
 	return (
         <div className={rootClasses.join(' ')} onClick={() => setVisible(false)}>
             <div className={classes.modalContent} onClick={(e) => e.stopPropagation()}>
