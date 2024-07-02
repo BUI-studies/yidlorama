@@ -1,6 +1,6 @@
 import { COMMON_ROUTES_NAMES } from '../routes.names'
 import { Home, Auth, Orders } from '@/pages'
-import { userActionAuth } from '@/actions'
+import { authAction } from '@/actions'
 
 export default [
 	{
@@ -10,7 +10,7 @@ export default [
 	{
 		path: COMMON_ROUTES_NAMES.AUTH,
 		element: <Auth />,
-		action: userActionAuth
+		action: authAction,
 	},
 	{
 		path: COMMON_ROUTES_NAMES.ORDERS,
