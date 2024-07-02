@@ -2,60 +2,40 @@
 	box-sizing: border-box;
 }
 
-.authorization {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 77vh;
-}
+.auth {
+	width: 100%;
+	height: 100%;
 
-.errorMessage {
-	color: red;
-	margin-bottom: 20px;
-}
+	&Form {
+		margin: 0 auto;
+		width: 270px;
+		padding: 10px 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
 
-.form {
-	width: 270px;
-	padding: 10px 20px;
-	display: flex;
-	flex-direction: column;
-	gap: 18px;
-
-	.formLabel {
-		width: 100%;
-		height: 100%;
-	}
-
-	.formField,
-	.formBtn {
-		width: 100%;
-		padding: 10px 5px 10px 19px;
-		font-size: 15px;
-		line-height: 15px;
-		font-weight: 400;
-		border: none;
-		color: rgb(255, 255, 255, 0.7);
-		background-color: #9f9f9f;
-	}
-
-	.formField {
-		box-shadow: inset 0px 3px 3px 2px rgb(132 132 132);
-		&::placeholder {
-			color: rgb(255, 255, 255, 0.7);
+		&Input {
+			width: 100%;
+			padding: 10px 20px;
+			border: 1px solid transparent;
+			background-color: #9f9f9f;
+			box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+			&::placeholder {
+				color: rgba(255, 255, 255, 0.7);
+			}
 		}
-	}
 
-	.formBtn {
-		padding: 10px;
-		cursor: pointer;
-		border-radius: 0;
-		color: rgb(255, 255, 255);
-		box-shadow: 0px 3px 3px 0 rgb(159, 159, 159);
-		transition: background-color 0.3s ease-in;
+		&Submit {
+			box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+			transition: all 0.2s;
+			&:hover {
+				background-color: rgb(71, 68, 68);
+			}
+		}
 
-		&:hover {
-			background-color: rgb(71, 68, 68);
+		&Error {
+			margin: 0 auto;
+			color: red;
 		}
 	}
 }

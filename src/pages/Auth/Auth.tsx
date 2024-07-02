@@ -22,33 +22,29 @@ const Auth = () => {
 	}, [actionData?.status, role, navigate])
 
 	return (
-		<section className={styles.authorization}>
-			{actionData?.status === 'error' && <p className={styles.errorMessage}>{actionData.message}</p>}
+		<section className={styles.auth}>
 			<Form
-				className={styles.form}
+				className={styles.authForm}
 				action={COMMON_ROUTES_NAMES.AUTH}
 				method="post"
 			>
-				<label className={styles.formLabel}>
-					<input
-						className={styles.formField}
-						type="email"
-						name="email"
-						placeholder="User name"
-						required
-					/>
-				</label>
-				<label>
-					<input
-						className={styles.formField}
-						type="password"
-						name="password"
-						placeholder="Password"
-						required
-					/>
-				</label>
+				{actionData?.status === 'error' && <p className={styles.authFormError}>{actionData.message}</p>}
+				<input
+					className={styles.authFormInput}
+					type="email"
+					name="email"
+					placeholder="User name"
+					required
+				/>
+				<input
+					className={styles.authFormInput}
+					type="password"
+					name="password"
+					placeholder="Password"
+					required
+				/>
 				<button
-					className={styles.formBtn}
+					className={styles.authFormSubmit}
 					type="submit"
 				>
 					Submit
