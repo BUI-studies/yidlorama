@@ -1,6 +1,6 @@
 import { logIn } from '@/firebase'
 import { AuthActionProps } from './types'
-import { AuthStatus } from './dto'
+import { AUTH_STATUS } from './dto'
 
 export const authAction = async ({ request }: AuthActionProps) => {
 	const formData = await request.formData()
@@ -9,9 +9,9 @@ export const authAction = async ({ request }: AuthActionProps) => {
 
 	try {
 		await logIn({ email, password })
-		return { status: AuthStatus.Success }
+		return { status: AUTH_STATUS.SUCCESS }
 	} catch (error) {
 		console.error(error)
-		return { status: AuthStatus.Error, message: 'Wrong e-mail or password' }
+		return { status: AUTH_STATUS.ERROR, message: 'Wrong e-mail or password' }
 	}
 }

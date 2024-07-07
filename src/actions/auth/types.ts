@@ -1,16 +1,11 @@
-import { AuthStatus } from './dto'
+import { AUTH_STATUS } from './dto'
 
 export type AuthActionProps = {
 	request: Request
 }
 
 export type AuthActionData = {
-	status: null | AuthStatus
+	status: null | AUTH_STATUS
 	message?: string
 	user?: { email: string; password?: string }
-}
-
-export type LoginError = {
-	error: string
-	message?: string
 }

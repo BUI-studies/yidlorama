@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useActionData, Form, useNavigate } from 'react-router-dom'
-import { AuthActionData, AuthStatus } from '@/actions'
+import { AuthActionData, AUTH_STATUS } from '@/actions'
 import { useAuth } from '@/firebase'
 import { COMMON_ROUTES_NAMES, ADMIN_ROUTES_NAMES } from '@/routing'
 import { ROLES } from '@/types'
@@ -12,7 +12,7 @@ const Auth = () => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		if (actionData?.status === AuthStatus.Success && Object.values(ROLES).includes(role!)) {
+		if (actionData?.status === AUTH_STATUS.SUCCESS && Object.values(ROLES).includes(role!)) {
 			if (role && role === ROLES.ADMIN) {
 				navigate(ADMIN_ROUTES_NAMES.USERS)
 			} else {

@@ -1,4 +1,4 @@
-export enum AuthStatus {
-	Success = 'success',
-	Error = 'error',
+export enum AUTH_STATUS {
+	SUCCESS = 'success',
+	ERROR = 'error',
 }
