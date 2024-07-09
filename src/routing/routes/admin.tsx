@@ -1,10 +1,11 @@
 import { ADMIN_ROUTES_NAMES } from '../routes.names'
 import { Users, Menu, Tables } from '../../pages'
 
+
 export default [
 	{
 		path: ADMIN_ROUTES_NAMES.USERS,
-		element: <Users />,
+		element: <Users/>,
 	},
 	{
 		path: ADMIN_ROUTES_NAMES.MENU,
