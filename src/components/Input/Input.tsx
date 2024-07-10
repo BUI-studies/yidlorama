@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { InputType, InputElementProps } from "../Input/type";
+import { INPUT_TYPE, InputElementProps } from "../Input/type";
 import classes from './Input.module.scss';
 
 const Input: FC<InputElementProps> = ({type, placeHolder, name, required, id, options=[], value, label}: InputElementProps) => {
@@ -15,7 +15,7 @@ const Input: FC<InputElementProps> = ({type, placeHolder, name, required, id, op
     <label className={classes.inputContainer}>
       {<span className={classes.inputLabel}>{label}</span>}
       <p className={classes.error}>{errorMessage}</p>
-      {type === InputType.SELECT?
+      {type === INPUT_TYPE.SELECT?
         (<select name={name} className={classes.inputItem} required={required}>
           <option className={classes.inputItem} disabled selected value={value} >{placeHolder}</option>
           {options.map((option) => <option key={`${id}${option.value}`} className={classes.inputItem} value={option.value}>{option.label}</option>)}
@@ -26,28 +26,28 @@ const Input: FC<InputElementProps> = ({type, placeHolder, name, required, id, op
 }
 export default Input;
 
-const validation = (type: InputType, value: string): JSX.Element | string => {
+const validation = (type: INPUT_TYPE, value: string): JSX.Element | string => {
   switch (type) {
-    case InputType.TEXT:
+    case INPUT_TYPE.TEXT:
       return value.length <= 3
         ? "Введіть більше 3-х символів"
         : '';
-    case InputType.PASSWORD:
+    case INPUT_TYPE.PASSWORD:
       const passwordRegexp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
       return !passwordRegexp.test(value)
         ? "min 4 букви та 4 цифри"
         : '';
-    case InputType.EMAIL:
+    case INPUT_TYPE.EMAIL:
       const emailRegexp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
       return !emailRegexp.test(value)
         ? "невірний формат"
         : '';
-    case InputType.DATE:
+    case INPUT_TYPE.DATE:
       const dateRegexp = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
       return !dateRegexp.test(value)
         ? "невірний формат"
         : '';
-    case InputType.SELECT:
+    case INPUT_TYPE.SELECT:
       return value === ''
       ? "оберіть опцію"
       : '';

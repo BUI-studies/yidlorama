@@ -1,4 +1,4 @@
-export enum InputType {
+export enum INPUT_TYPE {
   TEXT = 'text',
   PASSWORD = 'password',
   EMAIL = 'email',
@@ -20,7 +20,7 @@ export type SelectOption = {
 
 export type InputElementProps = {
   id: string;
-  type: InputType;
+  type: INPUT_TYPE;
   placeHolder?: string;
   name: string;
   required?: boolean | undefined;

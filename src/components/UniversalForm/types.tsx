@@ -1,6 +1,6 @@
 import { InputElementProps } from '../Input/type';
 
-export enum Method {
+export enum METHOD {
    POST = 'post',
    PUT = 'put',
    DELETE = 'delete'
@@ -9,7 +9,7 @@ export enum Method {
 export type FormProps = {
    title: string;
    action: string;
-   method: Method;
+   method: METHOD;
    inputs: InputElementProps[];
    button: 
       {
