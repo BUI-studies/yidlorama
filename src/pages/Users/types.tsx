@@ -6,7 +6,7 @@ export interface User extends BaseData {
 	password: string
 }
 
-export type UsersPageProps<T> = {
+export type UsersLoaderData<T> = {
   header: string,
   tableData: UniversalTableProps<T>
 }
