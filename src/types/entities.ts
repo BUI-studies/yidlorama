@@ -3,10 +3,11 @@ export type Dish = {
 	price: number
 	description: string
 	quantity: number
+	id: number
 }
 
 export type DishGroup = {
-	name: string
+	title: string
 	description?: string
 	dishes: Dish[]
 }
