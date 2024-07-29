@@ -20,6 +20,6 @@ export const createNavMenu = (role: string | undefined) => {
 			{ id: 4, title: 'Orders', url: COMMON_ROUTES_NAMES.ORDERS },
 		]
 	} else return []
-	
+
 	return navMenu
 }

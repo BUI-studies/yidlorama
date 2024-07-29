@@ -9,6 +9,7 @@ import adminRoutes from './routes/admin'
 import garsonRoutes from './routes/garson'
 
 import { COMMON_ROUTES_NAMES } from './routes.names'
+import { useAuth } from '@/firebase'
 
 //Requires an implementation of auth context or whatewer instead for now this is just a cork
 
@@ -18,15 +19,16 @@ const routesToRolesMap = {
 }
 
 const Router: FC = () => {
-	const auth = { role: 'admin' }
+	const auth = useAuth()
 
 	const router = createBrowserRouter([
 		{
 			path: COMMON_ROUTES_NAMES.HOME,
 			element: <Root />,
-			children: routesToRolesMap[auth.role as ROLES],
+			children: routesToRolesMap[auth.role as ROLES] || commonRoutes,
 		},
 	])
+
 	return <RouterProvider router={router} />
 }
 
