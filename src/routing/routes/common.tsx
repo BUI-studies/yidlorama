@@ -15,5 +15,11 @@ export default [
 	{
 		path: COMMON_ROUTES_NAMES.ORDERS,
 		element: <Orders />,
+		children: [
+			{
+				path: COMMON_ROUTES_NAMES.CREATE_ORDER,
+				element: <h2>New Order</h2>,
+			},
+		],
 	},
 ]

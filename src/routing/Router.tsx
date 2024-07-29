@@ -1,5 +1,5 @@
-import { FC } from 'react'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { FC, useEffect, useState } from 'react'
+import { RouteMatch, RouteObject, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import Root from '@/layout'
 import { ROLES } from '@/types/'
@@ -20,16 +20,26 @@ const routesToRolesMap = {
 
 const Router: FC = () => {
 	const auth = useAuth()
+	const [router, setRouter] = useState<RouteObject[]>(commonRoutes)
 
-	const router = createBrowserRouter([
-		{
-			path: COMMON_ROUTES_NAMES.HOME,
-			element: <Root />,
-			children: routesToRolesMap[auth.role as ROLES] || commonRoutes,
-		},
-	])
+	useEffect(() => {
+		if (auth.role) {
+			const roleRoutes = routesToRolesMap[auth.role as ROLES] || commonRoutes
+			setRouter([
+				{
+					path: COMMON_ROUTES_NAMES.HOME,
+					element: <Root />,
+					children: roleRoutes,
+				},
+			])
+		}
+	}, [auth.role])
 
-	return <RouterProvider router={router} />
+	if (!auth?.role) {
+		return <p>Loading...</p>
+	}
+
+	return <RouterProvider router={createBrowserRouter(router)} />
 }
 
 export default Router
