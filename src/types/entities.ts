@@ -24,3 +24,8 @@ export type Table = {
 	location: string
 	orders: Order[]
 }
+
+export type Error = {
+	error: string
+	message?: string
+}
