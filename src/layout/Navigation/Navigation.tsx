@@ -6,7 +6,7 @@ import classes from './Navigation.module.scss'
 
 const Navigation = () => { 
 	const { user, role } = useAuth()
-
+	
 	const authBtnText = user ? 'Log out' : 'Log in'
 
 return (
