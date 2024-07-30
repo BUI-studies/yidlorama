@@ -4,7 +4,7 @@ import classes from './Card.module.scss';
  type CardProps = {
   title: string;
   data: {
-    [k: string]: string;
+    [k: string]: string | number;
   }[];
  }
 

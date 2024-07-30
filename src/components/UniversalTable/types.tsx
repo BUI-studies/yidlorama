@@ -1,8 +1,8 @@
-export type BaseData = {
+export interface BaseData {
   id: string | number;
 };
 
-export type UniversalTableProps<D extends BaseData> = {
+export type UniversalTableProps<D> = {
   data: D[]
 
   headers: {
