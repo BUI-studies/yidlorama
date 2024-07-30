@@ -1,6 +1,7 @@
 import { ADMIN_ROUTES_NAMES } from '../routes.names'
-import { Users, Menu, Tables } from '../../pages'
+import { Users, Menu, Tables, NewUser } from '../../pages'
 import PrivateRoute from '../PrivateRoute'
+import { Children } from 'react'
 
 export default [
 	{
@@ -10,6 +11,16 @@ export default [
 				<Users />
 			</PrivateRoute>
 		),
+		children: [
+			{
+				path: ADMIN_ROUTES_NAMES.NEW_USER,
+				element: (
+					<PrivateRoute>
+						<NewUser />
+					</PrivateRoute>
+				),
+			}
+		]
 	},
 	{
 		path: ADMIN_ROUTES_NAMES.MENU,
