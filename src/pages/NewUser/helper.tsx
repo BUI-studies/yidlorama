@@ -1,13 +1,14 @@
-import { FormProps } from '@/cocomponents/UniversalForm/types.tsx'
+import { FormProps, METHOD } from '@/components/UniversalForm/types.tsx'
+import { INPUT_TYPE } from '@/components/Input/type.tsx'
 
 export const newUserFormProps: FormProps = {
   title: 'New user',
   action: '/api/users',
-  method: 'POST',
+  method: METHOD.POST,
   inputs: [
     {
       id: 'name',
-      type: 'text',
+      type: INPUT_TYPE.TEXT,
       placeHolder: 'Enter name',
       value: '',
       name: 'name',
@@ -16,7 +17,7 @@ export const newUserFormProps: FormProps = {
     },
     {
       id: 'email',
-      type: 'email',
+      type: INPUT_TYPE.EMAIL,
       placeHolder: 'Enter email',
       value: '',
       name: 'email',
@@ -25,7 +26,7 @@ export const newUserFormProps: FormProps = {
     },
     {
       id: 'password',
-      type: 'password',
+      type: INPUT_TYPE.PASSWORD,
       placeHolder: 'Enter password',
       value: '',
       name: 'password',
@@ -34,7 +35,7 @@ export const newUserFormProps: FormProps = {
     },
     {
       id: 'role',
-      type: 'select',
+      type: INPUT_TYPE.SELECT,
       placeHolder: 'Select role',
       value: '',
       name: 'role',
