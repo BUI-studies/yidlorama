@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import classes from './Card.module.scss';
 
- type CardProps = {
+export type CardProps = {
   title: string;
   data: {
     [k: string]: string | number;
