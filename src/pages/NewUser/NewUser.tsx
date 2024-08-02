@@ -1,16 +1,39 @@
-import { FC } from 'react'
-import { UniversalForm } from '@/components'
+import { FC, useState, useEffect } from 'react'
+import { UniversalForm, UniversalModal } from '@/components'
 import { UsersLoaderData, User } from './types'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, ActionFunctionArgs, redirect, useNavigate  } from 'react-router-dom'
 import { newUserFormProps } from './helper'
+import { ADMIN_ROUTES_NAMES } from '@/routing/routes.names'
+import { NewUserProps } from './helper'
+import { createNewUser } from '@/firebase/firestore'
 import classes from './NewUser.module.scss'
 
+
+export const addNewUser = async ({request}: ActionFunctionArgs) => {
+  let formData = await request.formData()
+
+  const newUserData: NewUserProps = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    password: formData.get('password'),
+    role: formData.get('role'),
+  }
+
+  await createNewUser(newUserData) 
+
+  return redirect(ADMIN_ROUTES_NAMES.USERS)
+}
+
 const NewUser: FC = () => {
+  const [isOpen, setOpen] = useState(true);
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(!isOpen){
+      navigate(ADMIN_ROUTES_NAMES.USERS)
+    }
+  },[isOpen])
   return (
-    <>
-      <h1>New user</h1>
-      <UniversalForm data={newUserFormProps}/>
-    </>
+      <UniversalModal children={<UniversalForm data={newUserFormProps}/>} title={'New user'} visible={isOpen} setVisible={setOpen}/>
   )
 }
 

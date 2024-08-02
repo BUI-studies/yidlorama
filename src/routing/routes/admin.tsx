@@ -1,7 +1,9 @@
 import { ADMIN_ROUTES_NAMES } from '../routes.names'
-import { Users, Menu, Tables, NewUser } from '../../pages'
+import { Users, Menu, Tables, NewUser } from '@/pages'
+import { addNewUser } from '@/pages/NewUser/NewUser'
 import PrivateRoute from '../PrivateRoute'
 import { Children } from 'react'
+import { mockUsersData } from '@/pages/Users/Users'
 
 export default [
 	{
@@ -11,6 +13,7 @@ export default [
 				<Users />
 			</PrivateRoute>
 		),
+		loader: mockUsersData,
 		children: [
 			{
 				path: ADMIN_ROUTES_NAMES.NEW_USER,
@@ -19,6 +22,7 @@ export default [
 						<NewUser />
 					</PrivateRoute>
 				),
+				action: addNewUser,
 			}
 		]
 	},

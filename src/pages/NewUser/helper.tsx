@@ -1,9 +1,16 @@
 import { FormProps, METHOD } from '@/components/UniversalForm/types.tsx'
 import { INPUT_TYPE } from '@/components/Input/type.tsx'
 
+export type NewUserProps = {
+  name: FormDataEntryValue | null,
+  email: FormDataEntryValue | null,
+  password: FormDataEntryValue | null,
+  role: FormDataEntryValue | null
+}
+
 export const newUserFormProps: FormProps = {
   title: 'New user',
-  action: '/api/users',
+  action: '/api/users/new',
   method: METHOD.POST,
   inputs: [
     {

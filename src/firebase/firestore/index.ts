@@ -1,6 +1,7 @@
 import { getFirestore, addDoc, collection, query, where, getDocs } from 'firebase/firestore'
 import { app } from '../main'
 import { UserRoleData } from './types'
+import { NewUserProps } from '@/pages/NewUser/helper'
 
 const db = getFirestore(app)
 
@@ -34,6 +35,20 @@ export const getUserRoleData = async (uid: string | undefined): Promise<string |
 			currentUserRole = data.role
 		})
 		return currentUserRole
+	} catch (error) {
+		throw new Error(`AN ERROR OCCURED: ${error}`)
+	}
+}
+
+/**
+ * Function creates a new document in "users" collection where sets all new user's data;
+ *
+ * @param {ROLES} role - new user's role in the system (admin or garson);
+ * @param {string} uid - new user's uid;
+ */
+export const createNewUser = async (userData: NewUserProps): Promise<void> => {
+	try {
+		await addDoc(collection(db, 'users'), { role: userData.role, email: userData.email, password: userData.password, name: userData.name })
 	} catch (error) {
 		throw new Error(`AN ERROR OCCURED: ${error}`)
 	}

@@ -9,7 +9,7 @@ export enum ADMIN_ROUTES_NAMES {
 	USERS = '/users',
 	MENU = '/menu',
 	TABLES = '/tables',
-	NEW_USER = '/users/new_user',
+	NEW_USER = '/users/new',
 }
 
 export enum GARSON_ROUTES_NAMES {

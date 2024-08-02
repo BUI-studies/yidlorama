@@ -1,5 +1,5 @@
 export type AddButtonProps = {
-    action: () => void
-    type?: 'button' | 'link'
-    url?: string
+    action?: () => void,
+    type?: 'button' | 'link',
+    to?: string,
 }
