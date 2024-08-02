@@ -16,7 +16,6 @@
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     justify-content: space-around;
   
-  
     &:nth-child(odd) {
       background-color: $lightGray;
     }
