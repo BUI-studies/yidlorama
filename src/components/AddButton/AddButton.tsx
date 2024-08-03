@@ -12,7 +12,7 @@ const AddButton: FC<AddButtonProps> = ({action, type = 'button', to='/'}) => {
         case 'button':
             return <button className={classes.addButton} onClick={action}>{PlusBtn.plusIcon}</button>
         case 'link':
-            return <Link to={to} className={classes.addButton} />
+            return <Link to={to} className={classes.addButton} children={PlusBtn.plusIcon}/>
         default:
             throw new Error('Invalid button type')
     }
