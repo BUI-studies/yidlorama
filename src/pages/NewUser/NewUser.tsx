@@ -18,9 +18,7 @@ export const addNewUser = async ({request}: ActionFunctionArgs) => {
     password: formData.get('password'),
     role: formData.get('role'),
   }
-
   await createNewUser(newUserData) 
-
   return redirect(ADMIN_ROUTES_NAMES.USERS)
 }
 
