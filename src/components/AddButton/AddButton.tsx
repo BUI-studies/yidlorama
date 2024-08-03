@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { PlusBtn } from './PlusBtn'
 import { AddButtonProps } from './types'
 import { Link } from 'react-router-dom'
 import classes from './AddButton.module.scss'
@@ -9,7 +10,7 @@ const AddButton: FC<AddButtonProps> = ({action, type = 'button', to='/'}) => {
 
     switch(type){
         case 'button':
-            return <button className={classes.addButton} onClick={action} />
+            return <button className={classes.addButton} onClick={action}>{PlusBtn.plusIcon}</button>
         case 'link':
             return <Link to={to} className={classes.addButton} />
         default:
