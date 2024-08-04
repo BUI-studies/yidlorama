@@ -11,6 +11,12 @@ const Input: FC<InputElementProps> = ({type, placeHolder, name, required, id, op
     setValue(newValue);
     setErrorMessage(validation(type, enteredValue));
   }
+
+  const handleOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const newValue = (e.target as HTMLInputElement).value;
+    setValue(newValue);
+    setErrorMessage(validation(type, enteredValue));
+  }
   return (
     <label className={classes.inputContainer}>
       {<span className={classes.inputLabel}>{label}</span>}
@@ -20,13 +26,13 @@ const Input: FC<InputElementProps> = ({type, placeHolder, name, required, id, op
           <option className={classes.inputItem} disabled selected value={value} >{placeHolder}</option>
           {options.map((option) => <option key={`${id}${option.value}`} className={classes.inputItem} value={option.value}>{option.label}</option>)}
         </select>):
-        (<input type={type} placeholder={placeHolder} name={name} onChange={handleOnChange} className={classes.inputItem} required={required}/>)}
+        (<input type={type} placeholder={placeHolder} name={name} onChange={(ev)=>handleOnChange(ev)} onKeyUp={(ev)=>handleOnKeyUp(ev)} className={classes.inputItem} required={required}/>)}
     </label>
   )
 }
 export default Input;
 
-const validation = (type: INPUT_TYPE, value: string): JSX.Element | string => {
+const validation = (type: INPUT_TYPE, value: string): string => {
   switch (type) {
     case INPUT_TYPE.TEXT:
       return value.length <= 3
