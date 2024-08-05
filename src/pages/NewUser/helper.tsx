@@ -1,16 +1,17 @@
 import { FormProps, METHOD } from '@/components/UniversalForm/types.tsx'
+import { ADMIN_ROUTES_NAMES } from '@/routing/routes.names'
 import { INPUT_TYPE } from '@/components/Input/type.tsx'
 
 export type NewUserProps = {
   name: FormDataEntryValue | null,
-  email: FormDataEntryValue | null,
-  password: FormDataEntryValue | null,
+  email?: FormDataEntryValue | null,
+  password?: FormDataEntryValue | null,
   role: FormDataEntryValue | null
 }
 
 export const newUserFormProps: FormProps = {
   title: 'New user',
-  action: '/api/users/new',
+  action: ADMIN_ROUTES_NAMES.NEW_USER,
   method: METHOD.POST,
   inputs: [
     {

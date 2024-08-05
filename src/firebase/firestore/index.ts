@@ -1,4 +1,6 @@
 import { getFirestore, addDoc, collection, query, where, getDocs } from 'firebase/firestore'
+import { createUserWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../auth"
 import { app } from '../main'
 import { UserRoleData } from './types'
 import { NewUserProps } from '@/pages/NewUser/helper'
@@ -48,8 +50,28 @@ export const getUserRoleData = async (uid: string | undefined): Promise<string |
  */
 export const createNewUser = async (userData: NewUserProps): Promise<void> => {
 	try {
-		await addDoc(collection(db, 'users'), { role: userData.role, email: userData.email, password: userData.password, name: userData.name })
+		await addDoc(collection(db, 'users'), { role: userData.role, name: userData.name, uid: auth.currentUser?.uid })
 	} catch (error) {
 		throw new Error(`AN ERROR OCCURED: ${error}`)
 	}
+}
+
+/**
+ * Function creates a new user via EMAIL and PASSWORD;
+ *
+ * @param {userData} role - object with new user's data;
+ */
+
+export const createNewUserWittEmailAndPassword = async (userData: NewUserProps): Promise<void> => {
+	createUserWithEmailAndPassword(auth, userData.email as string, userData.password as string)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
 }
