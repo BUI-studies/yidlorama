@@ -1,17 +1,46 @@
-import { FC } from 'react';
+import { FC, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Form } from 'react-router-dom'
 import { FormProps } from './types.tsx'
 import { Input } from '../index.ts'
-import classes from './UniversalForm.module.scss';
+import classes from './UniversalForm.module.scss'
 
 const UniversalForm: FC<{ data: FormProps }> = ({ data }) => {
-  return (
-    <Form className={classes.form} method={data.method} action={data.action}>
-      <p className={classes.formTitle}>{data.title}</p>
-      {data.inputs.map((input) => <Input id={input.id} key={input.id} type={input.type} placeHolder={input.placeHolder} value={input.value} name={input.name} required={input.required} options={input.options} label={input.label}/>)}
-      <button className={classes.formButton} type="submit" onClick={data.button.clickHandler} >{data.button.text}</button>
-    </Form>
-  )
-} 
+	const [navigationRequred, setNavigationRequired] = useState(false)
+	const navigate = useNavigate()
+	if (navigationRequred) {
+		navigate(data.submitNavigation as string)
+	}
 
-export default UniversalForm;
+	return (
+		<Form
+			className={classes.form}
+			method={data.method}
+			action={data.action}
+		>
+			<p className={classes.formTitle}>{data.title}</p>
+			{data.inputs.map(input => (
+				<Input
+					id={input.id}
+					key={input.id}
+					type={input.type}
+					placeHolder={input.placeHolder}
+					value={input.value}
+					name={input.name}
+					required={input.required}
+					options={input.options}
+					label={input.label}
+				/>
+			))}
+			<button
+				className={classes.formButton}
+				type="submit"
+				onClick={data.button.clickHandler}
+			>
+				{data.button.text}
+			</button>
+		</Form>
+	)
+}
+
+export default UniversalForm
