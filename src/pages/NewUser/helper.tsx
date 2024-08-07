@@ -13,6 +13,7 @@ export const newUserFormProps: FormProps = {
   title: 'New user',
   action: ADMIN_ROUTES_NAMES.NEW_USER,
   method: METHOD.POST,
+  submitNavigation: ADMIN_ROUTES_NAMES.USERS,
   inputs: [
     {
       id: 'name',

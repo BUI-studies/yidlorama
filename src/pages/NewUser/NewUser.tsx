@@ -1,7 +1,6 @@
 import { FC, useState, useEffect } from 'react'
 import { UniversalForm, UniversalModal } from '@/components'
-import { UsersLoaderData, User } from './types'
-import { useLoaderData, ActionFunctionArgs, redirect, useNavigate } from 'react-router-dom'
+import { ActionFunctionArgs, redirect, useNavigate } from 'react-router-dom'
 import { newUserFormProps } from './helper'
 import { ADMIN_ROUTES_NAMES } from '@/routing/routes.names'
 import { NewUserProps } from './helper'
