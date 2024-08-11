@@ -1,17 +1,10 @@
-import { FC, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { FC } from 'react'
 import { Form } from 'react-router-dom'
 import { FormProps } from './types.tsx'
 import { Input } from '../index.ts'
 import classes from './UniversalForm.module.scss'
 
 const UniversalForm: FC<{ data: FormProps }> = ({ data }) => {
-	const [navigationRequred, setNavigationRequired] = useState(false)
-	const navigate = useNavigate()
-	if (navigationRequred) {
-		navigate(data.submitNavigation as string)
-	}
-
 	return (
 		<Form
 			className={classes.form}

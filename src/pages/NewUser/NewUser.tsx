@@ -1,10 +1,11 @@
 import { FC, useState, useEffect } from 'react'
-import { UniversalForm, UniversalModal } from '@/components'
 import { ActionFunctionArgs, redirect, useNavigate } from 'react-router-dom'
-import { newUserFormProps } from './helper'
-import { ADMIN_ROUTES_NAMES } from '@/routing/routes.names'
-import { NewUserProps } from './helper'
 import { createNewUser, createNewUserWittEmailAndPassword } from '@/firebase/firestore'
+import { UniversalForm, UniversalModal } from '@/components'
+import { ADMIN_ROUTES_NAMES } from '@/routing/routes.names'
+
+import { NewUserProps, newUserFormProps } from './helper'
+
 import classes from './NewUser.module.scss'
 
 export const addNewUser = async ({ request }: ActionFunctionArgs) => {
@@ -25,17 +26,24 @@ export const addNewUser = async ({ request }: ActionFunctionArgs) => {
 const NewUser: FC = () => {
 	const [isOpen, setOpen] = useState(true)
 	const navigate = useNavigate()
-	useEffect(() => {
-		if (!isOpen) {
+
+	const handleClose = (newIsOpen: boolean) => {
+		if (!newIsOpen) {
 			navigate(ADMIN_ROUTES_NAMES.USERS)
 		}
-	}, [isOpen])
+		setOpen(newIsOpen)
+	}
+
+	newUserFormProps.button.clickHandler = () => {
+		setOpen(false)
+	}
+
 	return (
 		<UniversalModal
 			children={<UniversalForm data={newUserFormProps} />}
-			title={''}
+			title={'Create New User nahui'}
 			visible={isOpen}
-			setVisible={setOpen}
+			setVisible={handleClose}
 		/>
 	)
 }
