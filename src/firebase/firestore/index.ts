@@ -1,8 +1,9 @@
 import { getFirestore, addDoc, collection, query, where, getDocs } from 'firebase/firestore'
-import { createUserWithEmailAndPassword } from "firebase/auth"
-import { auth } from "../auth"
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../auth'
 import { app } from '../main'
 import { UserRoleData } from './types'
+import { UsersLoaderData, User } from '../../pages/Users/types'
 import { NewUserProps } from '@/pages/NewUser/helper'
 
 const db = getFirestore(app)
@@ -64,14 +65,19 @@ export const createNewUser = async (userData: NewUserProps): Promise<void> => {
 
 export const createNewUserWittEmailAndPassword = async (userData: NewUserProps): Promise<void> => {
 	createUserWithEmailAndPassword(auth, userData.email as string, userData.password as string)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
+		.then(userCredential => {
+			// Signed up
+			if (userCredential) {console.log('New user has sucsessfully created, you signed up as ' + userCredential)}
+			// ...
+		})
+		.catch(error => {
+			throw new Error(`AN ERROR OCCURED: ${error}`)
+		})
+}
+
+export const getUsersData = async () => {
+	const usersCollection = collection(db, 'users')
+	const usersSnapshot = await getDocs(usersCollection)
+	const usersData = usersSnapshot.docs.map(doc => doc.data())
+	return usersData
 }

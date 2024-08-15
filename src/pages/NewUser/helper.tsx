@@ -1,4 +1,6 @@
 import { FormProps, METHOD } from '@/components/UniversalForm/types.tsx'
+import { ActionFunctionArgs, redirect } from 'react-router-dom'
+import { createNewUser, createNewUserWittEmailAndPassword } from '@/firebase/firestore'
 import { ADMIN_ROUTES_NAMES } from '@/routing/routes.names'
 import { INPUT_TYPE } from '@/components/Input/type.tsx'
 
@@ -11,9 +13,7 @@ export type NewUserProps = {
 
 export const newUserFormProps: FormProps = {
 	title: 'New user',
-	// action: ADMIN_ROUTES_NAMES.NEW_USER,
 	method: METHOD.POST,
-	submitNavigation: ADMIN_ROUTES_NAMES.USERS,
 	inputs: [
 		{
 			id: 'name',
@@ -66,4 +66,18 @@ export const newUserFormProps: FormProps = {
 		text: 'Create',
 		// clickHandler: () => console.log('Create button clicked')
 	},
+}
+
+export const addNewUser = async ({ request }: ActionFunctionArgs) => {
+	let formData = await request.formData()
+
+	const newUserData: NewUserProps = {
+		name: formData.get('name'),
+		email: formData.get('email'),
+		password: formData.get('password'),
+		role: formData.get('role'),
+	}
+	await createNewUserWittEmailAndPassword(newUserData)
+	await createNewUser(newUserData)
+	return redirect(ADMIN_ROUTES_NAMES.USERS)
 }

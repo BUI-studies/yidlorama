@@ -11,7 +11,6 @@ export type FormProps = {
 	action?: string
 	method: METHOD
 	inputs: InputElementProps[]
-	submitNavigation?: string
 	button: {
 		text: string
 		clickHandler?: () => void

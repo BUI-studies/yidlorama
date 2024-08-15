@@ -1,9 +1,8 @@
 import { ADMIN_ROUTES_NAMES } from '../routes.names'
 import { Users, Menu, Tables, NewUser } from '@/pages'
-import { addNewUser } from '@/pages/NewUser/NewUser'
+import { addNewUser } from '@/pages/NewUser/helper'
 import PrivateRoute from '../PrivateRoute'
-import { Children } from 'react'
-import { mockUsersData } from '@/pages/Users/Users'
+import { getUsersData } from '@/firebase/firestore'
 
 export default [
 	{
@@ -13,7 +12,7 @@ export default [
 				<Users />
 			</PrivateRoute>
 		),
-		loader: mockUsersData,
+		loader: getUsersData,
 		children: [
 			{
 				path: ADMIN_ROUTES_NAMES.NEW_USER,
