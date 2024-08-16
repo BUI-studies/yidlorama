@@ -1,6 +1,6 @@
 import { UniversalTable, AddButton } from '@/components'
 import { UsersLoaderData, User } from './types'
-import { FittingDataUserPage } from './helper'
+import { mapDataUserPage } from './helper'
 import classes from './Users.module.scss'
 import { useLoaderData } from 'react-router-dom'
 import { ADMIN_ROUTES_NAMES } from '@/routing/routes.names'
@@ -8,7 +8,7 @@ import { Outlet } from 'react-router-dom'
 
 const Users = () => {
 	const usersDataResponse = useLoaderData() as UsersLoaderData<User>
-	const tableData = FittingDataUserPage(usersDataResponse)
+	const tableData = mapDataUserPage(usersDataResponse)
 
 	return (
 		<>

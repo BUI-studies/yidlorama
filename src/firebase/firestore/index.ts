@@ -66,12 +66,10 @@ export const createNewUser = async (userData: NewUserProps): Promise<void> => {
 export const createNewUserWittEmailAndPassword = async (userData: NewUserProps): Promise<void> => {
 	createUserWithEmailAndPassword(auth, userData.email as string, userData.password as string)
 		.then(userCredential => {
-			// Signed up
-			if (userCredential) {console.log('New user has sucsessfully created, you signed up as ' + userCredential)}
-			// ...
+			if (userCredential) {alert(`New user has created: ${userCredential.user?.email}`)}
 		})
 		.catch(error => {
-			throw new Error(`AN ERROR OCCURED: ${error}`)
+			throw new Error(alert(`AN ERROR OCCURED: ${error}`) as string | undefined)
 		})
 }
 
