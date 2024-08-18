@@ -1,56 +1,55 @@
-@import "../../app/variables.scss";
+@import '../../app/variables.scss';
 
 .table {
-  &Container {
-    width: 100%;
-    margin: 0 auto;
-    color: $white;
-    width: $contentContainerWidth;
-  }
-  
-  &Header {
-    z-index: 1;
-    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.458);
-    padding: 10px 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    justify-content: space-around;
-  
-    &:nth-child(odd) {
-      background-color: $lightGray;
-    }
-  }
+	&Container {
+		width: 100%;
+		margin: 0 auto;
+		color: $white;
+		width: $contentContainerWidth;
+	}
 
-  &Row {
-    padding: 10px 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    justify-content: space-between;
-  
-  
-    &:nth-child(odd) {
-      background-color: $lightGray;
-    }
-    
-    &:nth-child(even) {
-      background-color: $mainGray;
-    }
-  }
-  
-  &Cell {
-    &:nth-child(1) {
-      text-align: start;
-    }
-    text-align: center;
-    width: 100%;
-    
-    &:nth-last-child(1) {
-      text-align: end;
-    }
+	&Header {
+		z-index: 1;
+		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.458);
+		padding: 10px 20px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+		justify-content: space-around;
 
-  
-    &Headers{
-      font-weight: 700;
-    }
-  }
+		&:nth-child(odd) {
+			background-color: $lightGray;
+		}
+	}
+
+	&Row {
+		padding: 10px 20px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+		justify-content: space-between;
+
+		&:nth-child(odd) {
+			background-color: $lightGray;
+		}
+
+		&:nth-child(even) {
+			background-color: $mainGray;
+		}
+	}
+
+	&Cell {
+		text-align: center;
+		width: 100%;
+
+		&:nth-child(1) {
+			text-align: start;
+		}
+
+		&:nth-last-child(1) {
+			text-align: end;
+		}
+
+		&Headers {
+			font-weight: 700;
+		}
+	}
 }
