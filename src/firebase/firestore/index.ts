@@ -3,7 +3,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../auth'
 import { app } from '../main'
 import { UserRoleData } from './types'
-import { UsersLoaderData, User } from '../../pages/Users/types'
 import { NewUserProps } from '@/pages/NewUser/helper'
 
 const db = getFirestore(app)
@@ -66,7 +65,9 @@ export const createNewUser = async (userData: NewUserProps): Promise<void> => {
 export const createNewUserWittEmailAndPassword = async (userData: NewUserProps): Promise<void> => {
 	createUserWithEmailAndPassword(auth, userData.email as string, userData.password as string)
 		.then(userCredential => {
-			if (userCredential) {alert(`New user has created: ${userCredential.user?.email}`)}
+			if (userCredential) {
+				alert(`New user has created: ${userCredential.user?.email}`)
+			}
 		})
 		.catch(error => {
 			throw new Error(alert(`AN ERROR OCCURED: ${error}`) as string | undefined)
@@ -76,6 +77,8 @@ export const createNewUserWittEmailAndPassword = async (userData: NewUserProps):
 export const getUsersData = async () => {
 	const usersCollection = collection(db, 'users')
 	const usersSnapshot = await getDocs(usersCollection)
+
 	const usersData = usersSnapshot.docs.map(doc => doc.data())
+
 	return usersData
 }

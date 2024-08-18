@@ -18,12 +18,16 @@ const Users = () => {
 						to={ADMIN_ROUTES_NAMES.NEW_USER}
 						action={() => {}}
 					/>
-					<h2 className={classes.usersPageOptionsHeader}>{tableData.header}</h2>
+					<h2 className={classes.usersPageOptionsHeader}>{tableData.title}</h2>
 				</div>
-				<UniversalTable
-					data={tableData.data.data}
-					headers={tableData.data.headers}
-				/>
+				{usersDataResponse.length ? (
+					<UniversalTable<UserData>
+						data={tableData.users}
+						headers={tableData.headers}
+					/>
+				) : (
+					<p>Дані відсутні</p>
+				)}
 			</div>
 		</>
 	)

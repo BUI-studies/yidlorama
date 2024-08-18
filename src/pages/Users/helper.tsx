@@ -1,28 +1,26 @@
-import { BaseData } from '@/components/UniversalTable/types'
+import { ROLES } from '@/types'
 
 export type UserData = {
-	id: string | number;
-	[key: string]: any; // інші поля можуть бути будь-якими
-  };
+	id: string | number
+	role: ROLES
+	name: string
+	uid: string
+}
 
-export const mapDataUserPage = (usersDataResponse: UserData[]) => {
-	const tableData = {
-		header: 'Users',
-		data: {
-			headers: Object.keys(usersDataResponse[0]).map(key => {
-				const title = key.split('')
-				title[0] = title[0].toUpperCase()
-				const header = {
-					title: title.join(''),
-					property: key,
-				}
-				return header
-			}),
-			data: usersDataResponse.map(user => {
-				return user
-			}),
-		},
+export const mapDataUserPage = (array: UserData[]) => {
+	return {
+		title: 'Users',
+
+		headers: Object.keys(array[0] || {}).map((key) => {
+			const title = key.split('')
+			title[0] = title[0].toUpperCase()
+			const header = {
+				title: title.join(''),
+				property: key as keyof UserData,
+			}
+			return header
+		}),
+
+		users: array
 	}
-
-	return tableData
 }
