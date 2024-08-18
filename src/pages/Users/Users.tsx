@@ -1,13 +1,12 @@
+import { Outlet, useLoaderData } from 'react-router-dom'
 import { UniversalTable, AddButton } from '@/components'
-import { UsersLoaderData, User } from './types'
-import { mapDataUserPage } from './helper'
-import classes from './Users.module.scss'
-import { useLoaderData } from 'react-router-dom'
+import { mapDataUserPage, UserData } from './helper'
 import { ADMIN_ROUTES_NAMES } from '@/routing/routes.names'
-import { Outlet } from 'react-router-dom'
+import classes from './Users.module.scss'
 
 const Users = () => {
-	const usersDataResponse = useLoaderData() as UsersLoaderData<User>
+	const usersDataResponse = useLoaderData() as UserData[]
+	console.log(usersDataResponse)
 	const tableData = mapDataUserPage(usersDataResponse)
 
 	return (

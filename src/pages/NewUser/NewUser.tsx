@@ -24,7 +24,8 @@ const NewUser: FC = () => {
 		<UniversalModal
 			children={<UniversalForm data={newUserFormProps} />}
 			title={'Create New User nahui'}
-			visible={isOpen}
+				visible={isOpen}
+			
 			setVisible={handleClose}
 		/>
 	)

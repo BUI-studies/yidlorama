@@ -1,4 +1,12 @@
-export const mapDataUserPage = usersDataResponse => {
+import { BaseData } from '@/components/UniversalTable/types'
+
+export type UserData = {
+	id: string | number;
+	[key: string]: any; // інші поля можуть бути будь-якими
+  };
+
+export const mapDataUserPage = (usersDataResponse: UserData[]) => {
+	console.log(usersDataResponse)
 	const tableData = {
 		header: 'Users',
 		data: {
