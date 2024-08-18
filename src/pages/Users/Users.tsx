@@ -6,7 +6,6 @@ import classes from './Users.module.scss'
 
 const Users = () => {
 	const usersDataResponse = useLoaderData() as UserData[]
-	console.log(usersDataResponse)
 	const tableData = mapDataUserPage(usersDataResponse)
 
 	return (

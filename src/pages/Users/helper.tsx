@@ -6,7 +6,6 @@ export type UserData = {
   };
 
 export const mapDataUserPage = (usersDataResponse: UserData[]) => {
-	console.log(usersDataResponse)
 	const tableData = {
 		header: 'Users',
 		data: {
