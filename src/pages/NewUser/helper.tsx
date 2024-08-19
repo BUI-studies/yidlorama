@@ -1,6 +1,8 @@
 import { FormProps, METHOD } from '@/components/UniversalForm/types.tsx'
 import { ActionFunctionArgs, redirect } from 'react-router-dom'
-import { createNewUser, createNewUserWittEmailAndPassword } from '@/firebase/firestore'
+import { addUserToCollection } from '@/firebase/firestore'
+import { createNewUser } from '@/firebase/auth'
+import { INewUserProps } from '@/firebase/auth/types'
 import { ADMIN_ROUTES_NAMES } from '@/routing/routes.names'
 import { INPUT_TYPE } from '@/components/Input/type.tsx'
 
@@ -16,13 +18,22 @@ export const newUserFormProps: FormProps = {
 	method: METHOD.POST,
 	inputs: [
 		{
-			id: 'name',
+			id: 'first name',
 			type: INPUT_TYPE.TEXT,
-			placeHolder: 'Enter name',
+			placeHolder: 'First name',
 			value: '',
-			name: 'name',
+			name: 'first name',
 			required: true,
-			label: 'Name',
+			label: 'First name',
+		},
+		{
+			id: 'last name',
+			type: INPUT_TYPE.TEXT,
+			placeHolder: 'Last name',
+			value: '',
+			name: 'last name',
+			required: true,
+			label: 'Last name',
 		},
 		{
 			id: 'email',
@@ -64,20 +75,23 @@ export const newUserFormProps: FormProps = {
 	],
 	button: {
 		text: 'Create',
-		// clickHandler: () => console.log('Create button clicked')
 	},
 }
 
 export const addNewUser = async ({ request }: ActionFunctionArgs) => {
 	let formData = await request.formData()
+	const userId = `${new Date().getTime().toString().split('').reverse().splice(0, 8).join('')}`
 
-	const newUserData: NewUserProps = {
-		name: formData.get('name'),
+	const newUserData: INewUserProps = {
+		firstName: formData.get('first name'),
+		lastName: formData.get('last name'),
 		email: formData.get('email'),
 		password: formData.get('password'),
 		role: formData.get('role'),
+		id: userId,
 	}
-	await createNewUserWittEmailAndPassword(newUserData)
+	// await createNewUserWittEmailAndPassword(newUserData)
 	await createNewUser(newUserData)
+	await addUserToCollection(newUserData)
 	return redirect(ADMIN_ROUTES_NAMES.USERS)
 }
