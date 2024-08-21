@@ -1,10 +1,11 @@
 import { FormProps, METHOD } from '@/components/UniversalForm/types.tsx'
 import { ActionFunctionArgs, redirect } from 'react-router-dom'
 import { addUserToCollection } from '@/firebase/firestore'
-import { createNewUser } from '@/firebase/auth'
+import { auth, createNewUser } from '@/firebase/auth'
 import { INewUserProps } from '@/firebase/auth/types'
 import { ADMIN_ROUTES_NAMES } from '@/routing/routes.names'
 import { INPUT_TYPE } from '@/components/Input/type.tsx'
+import { ROLES } from '@/types'
 
 export type NewUserProps = {
 	name: FormDataEntryValue | null
@@ -87,11 +88,13 @@ export const addNewUser = async ({ request }: ActionFunctionArgs) => {
 		lastName: formData.get('last name'),
 		email: formData.get('email'),
 		password: formData.get('password'),
-		role: formData.get('role'),
+		role: formData.get('role') as ROLES,
 		id: userId,
 	}
-	// await createNewUserWittEmailAndPassword(newUserData)
 	await createNewUser(newUserData)
+	if (auth.currentUser) {
+		newUserData.uid = auth.currentUser.uid
+	}
 	await addUserToCollection(newUserData)
 	return redirect(ADMIN_ROUTES_NAMES.USERS)
 }

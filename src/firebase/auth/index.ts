@@ -23,15 +23,15 @@ export const auth = getAuth(app)
  * @param {string} email - new user's e-mail;
  * @param {string} password - new user's password;
  */
-export const createNewUser = async ({ firstName, lastName, role, email, password }: INewUserProps): Promise<void> => {
+export const createNewUser = async ({ firstName, lastName, email, password }: INewUserProps): Promise<void> => {
 	try {
-		const newUser = await createUserWithEmailAndPassword(auth, email, password)
+		const newUser = await createUserWithEmailAndPassword(auth, email as string, password as string)
 
 		await updateProfile(newUser.user, {
 			displayName: `${firstName} ${lastName}`,
 		})
 
-		await setNewUserRoleData({ role: role as ROLES, uid: newUser.user.uid })
+		// await setNewUserRoleData({ role: role as ROLES, uid: newUser.user.uid })
 	} catch (error) {
 		throw new Error(`AN ERROR OCCURED: ${error}`)
 	}
@@ -54,7 +54,6 @@ export const getCurrentUser = (): User | null => {
 export const logIn = async ({ email, password }: IAuthProps): Promise<void> => {
 	try {
 		await signInWithEmailAndPassword(auth, email, password)
-
 	} catch (error) {
 		throw new Error(`AN ERROR OCCURED: ${error}`)
 	}

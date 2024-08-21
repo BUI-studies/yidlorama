@@ -11,7 +11,7 @@ export const mapDataUserPage = (array: UserData[]) => {
 	return {
 		title: 'Users',
 
-		headers: Object.keys(array[0] || {}).map((key) => {
+		headers: Object.keys(array[0] || {}).map(key => {
 			const title = key.split('')
 			title[0] = title[0].toUpperCase()
 			const header = {
@@ -21,6 +21,6 @@ export const mapDataUserPage = (array: UserData[]) => {
 			return header
 		}),
 
-		users: array
+		users: array,
 	}
 }

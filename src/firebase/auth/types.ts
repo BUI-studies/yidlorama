@@ -10,7 +10,8 @@ export interface INewUserProps extends IAuthProps {
 	firstName: string | FormDataEntryValue | null
 	lastName: string | FormDataEntryValue | null
 	role: ROLES | FormDataEntryValue | null
-	id?: string
+	id?: string,
+	uid?: string
 }
 
 export type Auth = {

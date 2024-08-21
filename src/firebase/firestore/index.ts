@@ -70,14 +70,7 @@ export const createNewUserWittEmailAndPassword = async (userData: NewUserProps):
 
 export const addUserToCollection = async (userData: INewUserProps): Promise<void> => {
 	try {
-		await addDoc(collection(db, 'users'), {
-			firstName: userData.firstName,
-			lastName: userData.lastName,
-			role: userData.role,
-			email: userData.email,
-			password: userData.password,
-			id: userData.id,
-		})
+		await addDoc(collection(db, 'users'), userData)
 	} catch (error) {
 		throw new Error(`AN ERROR OCCURED: ${error}`)
 	}
