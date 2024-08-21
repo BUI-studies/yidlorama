@@ -3,7 +3,7 @@ import { METHOD, FormProps } from '@/components/UniversalForm/types'
 import { COMMON_ROUTES_NAMES } from '@/routing/routes.names'
 
 export const authForm: FormProps = {
-	title: '',
+	title: 'Login',
 	action: COMMON_ROUTES_NAMES.AUTH,
 	method: METHOD.POST,
 	inputs: [
