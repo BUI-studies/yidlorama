@@ -22,7 +22,7 @@ const NewUser: FC = () => {
 
 	return (
 		<UniversalModal
-			title={'Create New User nahui'}
+			title={''}
 			visible={isOpen}
 			setVisible={handleClose}
 		>

@@ -53,7 +53,7 @@ export const getCurrentUser = (): User | null => {
  */
 export const logIn = async ({ email, password }: IAuthProps): Promise<void> => {
 	try {
-		await signInWithEmailAndPassword(auth, email, password)
+		await signInWithEmailAndPassword(auth, email as string, password as string)
 	} catch (error) {
 		throw new Error(`AN ERROR OCCURED: ${error}`)
 	}

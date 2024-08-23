@@ -68,8 +68,8 @@ export const newUserFormProps: FormProps = {
 					label: 'Admin',
 				},
 				{
-					value: 'user',
-					label: 'User',
+					value: 'garson',
+					label: 'Garson',
 				},
 			],
 		},

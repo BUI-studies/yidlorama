@@ -1,13 +1,12 @@
 @import "../../app/variables.scss";
 
 .usersPage {
-  width: $contentContainerWidth;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  height: 100vh;
+  // height: 100vh;
   background-color: #fff;
 
   &Options {
