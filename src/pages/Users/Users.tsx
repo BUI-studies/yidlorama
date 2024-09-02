@@ -8,7 +8,6 @@ const Users = () => {
 	const usersDataResponse = useLoaderData() as UserData[]
 	const tableData = mapDataUserPage(usersDataResponse)
 
-
 	return (
 		<>
 			<Outlet />

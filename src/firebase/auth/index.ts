@@ -30,8 +30,6 @@ export const createNewUser = async ({ firstName, lastName, email, password }: IN
 		await updateProfile(newUser.user, {
 			displayName: `${firstName} ${lastName}`,
 		})
-
-		// await setNewUserRoleData({ role: role as ROLES, uid: newUser.user.uid })
 	} catch (error) {
 		throw new Error(`AN ERROR OCCURED: ${error}`)
 	}
