@@ -24,6 +24,5 @@ export const authForm: FormProps = {
 	],
 	button: {
 		text: 'Submit',
-		clickHandler: () => {},
 	},
 }

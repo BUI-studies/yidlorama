@@ -19,7 +19,7 @@ export const newUserFormProps: FormProps = {
 	method: METHOD.POST,
 	inputs: [
 		{
-			id: 'first name',
+			id: '01',
 			type: INPUT_TYPE.TEXT,
 			placeHolder: 'First name',
 			value: '',
@@ -28,7 +28,7 @@ export const newUserFormProps: FormProps = {
 			label: 'First name',
 		},
 		{
-			id: 'last name',
+			id: '02',
 			type: INPUT_TYPE.TEXT,
 			placeHolder: 'Last name',
 			value: '',
@@ -37,7 +37,7 @@ export const newUserFormProps: FormProps = {
 			label: 'Last name',
 		},
 		{
-			id: 'email',
+			id: '03',
 			type: INPUT_TYPE.EMAIL,
 			placeHolder: 'Enter email',
 			value: '',
@@ -46,7 +46,7 @@ export const newUserFormProps: FormProps = {
 			label: 'Email',
 		},
 		{
-			id: 'password',
+			id: '04',
 			type: INPUT_TYPE.PASSWORD,
 			placeHolder: 'Enter password',
 			value: '',
@@ -55,7 +55,7 @@ export const newUserFormProps: FormProps = {
 			label: 'Password',
 		},
 		{
-			id: 'role',
+			id: '05',
 			type: INPUT_TYPE.SELECT,
 			placeHolder: 'Select role',
 			value: '',
