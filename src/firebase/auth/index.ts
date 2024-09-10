@@ -25,11 +25,13 @@ export const auth = getAuth(app)
  */
 export const createNewUser = async ({ firstName, lastName, email, password }: INewUserProps): Promise<void> => {
 	try {
-		const newUser = await createUserWithEmailAndPassword(auth, email as string, password as string)
-
-		await updateProfile(newUser.user, {
-			displayName: `${firstName} ${lastName}`,
-		})
+		if (typeof email === 'string' && typeof password === 'string') {
+			const newUser = await createUserWithEmailAndPassword(auth, email, password);
+			await updateProfile(newUser.user, {
+				displayName: `${firstName} ${lastName}`,
+	
+			})
+		}
 	} catch (error) {
 		throw new Error(`AN ERROR OCCURED: ${error}`)
 	}

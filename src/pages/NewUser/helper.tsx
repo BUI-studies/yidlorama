@@ -15,7 +15,7 @@ export type NewUserProps = {
 }
 
 export const newUserFormProps: FormProps = {
-	title: 'New user',
+	title: '',
 	method: METHOD.POST,
 	inputs: [
 		{
