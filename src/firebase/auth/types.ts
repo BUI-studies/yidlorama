@@ -2,8 +2,8 @@ import { ROLES } from '@/types'
 import { User } from 'firebase/auth'
 
 export interface IAuthProps {
-	email: string | FormDataEntryValue | null
-	password: string | FormDataEntryValue | null
+	email: string
+	password: string
 }
 
 export interface INewUserProps extends IAuthProps {
