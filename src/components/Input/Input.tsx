@@ -32,7 +32,6 @@ const Input: FC<InputElementProps> = ({
 					<option
 						className={classes.inputItem}
 						disabled
-						selected
 						value={value}
 					>
 						{placeHolder}

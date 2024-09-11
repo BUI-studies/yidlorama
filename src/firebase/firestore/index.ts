@@ -1,9 +1,7 @@
 import { getFirestore, addDoc, collection, query, where, getDocs } from 'firebase/firestore'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../auth'
 import { app } from '../main'
 import { UserRoleData } from './types'
-import { NewUserProps } from '@/pages/NewUser/helper'
+import { INewUserProps } from '@/firebase/auth/types'
 
 const db = getFirestore(app)
 
@@ -42,43 +40,17 @@ export const getUserRoleData = async (uid: string | undefined): Promise<string |
 	}
 }
 
-/**
- * Function creates a new document in "users" collection where sets all new user's data;
- *
- * @param {ROLES} role - new user's role in the system (admin or garson);
- * @param {string} uid - new user's uid;
- */
-export const createNewUser = async (userData: NewUserProps): Promise<void> => {
+export const addUserToCollection = async (userData: INewUserProps): Promise<void> => {
 	try {
-		await addDoc(collection(db, 'users'), { role: userData.role, name: userData.name, uid: auth.currentUser?.uid })
+		await addDoc(collection(db, 'users'), userData)
 	} catch (error) {
 		throw new Error(`AN ERROR OCCURED: ${error}`)
 	}
 }
 
-/**
- * Function creates a new user via EMAIL and PASSWORD;
- *
- * @param {userData} role - object with new user's data;
- */
-
-export const createNewUserWittEmailAndPassword = async (userData: NewUserProps): Promise<void> => {
-	createUserWithEmailAndPassword(auth, userData.email as string, userData.password as string)
-		.then(userCredential => {
-			if (userCredential) {
-				alert(`New user has created: ${userCredential.user?.email}`)
-			}
-		})
-		.catch(error => {
-			throw new Error(alert(`AN ERROR OCCURED: ${error}`) as string | undefined)
-		})
-}
-
 export const getUsersData = async () => {
 	const usersCollection = collection(db, 'users')
 	const usersSnapshot = await getDocs(usersCollection)
-
 	const usersData = usersSnapshot.docs.map(doc => doc.data())
-
 	return usersData
 }

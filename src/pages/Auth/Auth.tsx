@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
-import { useActionData, Form, useNavigate } from 'react-router-dom'
+import { useActionData, useNavigate } from 'react-router-dom'
 import { AuthActionData, AUTH_STATUS } from '@/actions'
 import { useAuth } from '@/firebase'
 import { COMMON_ROUTES_NAMES, ADMIN_ROUTES_NAMES } from '@/routing'
 import { ROLES } from '@/types'
-import styles from './Auth.module.scss'
+import { UniversalForm } from '@/components'
+import { authForm } from './helper'
+import classes from './Auth.module.scss'
 
 const Auth = () => {
 	const actionData = useActionData() as AuthActionData | undefined
@@ -20,37 +22,12 @@ const Auth = () => {
 			}
 		}
 	}, [actionData?.status, role, navigate])
-
 	return (
-		<section className={styles.auth}>
-			<Form
-				className={styles.authForm}
-				action={COMMON_ROUTES_NAMES.AUTH}
-				method="post"
-			>
-				{actionData?.status === 'error' && <p className={styles.authFormError}>{actionData.message}</p>}
-				<input
-					className={styles.authFormInput}
-					type="email"
-					name="email"
-					placeholder="User name"
-					required
-				/>
-				<input
-					className={styles.authFormInput}
-					type="password"
-					name="password"
-					placeholder="Password"
-					required
-				/>
-				<button
-					className={styles.authFormSubmit}
-					type="submit"
-				>
-					Submit
-				</button>
-			</Form>
-		</section>
+		<>
+			<div className={classes.authPage}>
+				<UniversalForm data={authForm} />
+			</div>
+		</>
 	)
 }
 
