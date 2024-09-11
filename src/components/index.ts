@@ -5,3 +5,4 @@ export { default as Button } from './AddButton/AddButton';
 export { default as UniversalForm } from './UniversalForm/UniversalForm';
 export { default as Input } from './Input/Input';
 export { default as UniversalModal } from './UniversalModal/UniversalModal'
+export { default as Loader } from './Loader/Loader'

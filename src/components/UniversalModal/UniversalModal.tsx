@@ -3,28 +3,34 @@ import { CloseBtn } from './CloseBtn'
 import classes from './UniversalModal.module.scss'
 
 type ModalProps = {
-    children: ReactNode
-    title: string
-    visible: boolean
-    setVisible: Dispatch<SetStateAction<boolean>>
+	children: ReactNode
+	title: string
+	visible: boolean
+	setVisible: (newVal: boolean) => void
 }
 
-const UniversalModal:FC<ModalProps> = ({ children, title, visible, setVisible  }) => {
+const UniversalModal: FC<ModalProps> = ({ children, title, visible, setVisible }) => {
+	const rootClasses: string[] = [classes.modal, visible ? classes.active : '']
 
-    const rootClasses: string[] = [classes.modal, visible ? classes.active : '']
-    
 	return (
-        <div className={rootClasses.join(' ')} onClick={() => setVisible(false)}>
-            <div className={classes.modalContent} onClick={(e) => e.stopPropagation()}>
-                <div className={classes.modalBtnClose} onClick={() => setVisible(false)}>
-                    {CloseBtn.closeIcon}
-                </div>
-                <h2 className={classes.modalTitle}>
-                    {title}
-                </h2>
-                {children}
-            </div>
-        </div>
+		<div
+			className={rootClasses.join(' ')}
+			onClick={() => setVisible(false)}
+		>
+			<div
+				className={classes.modalContent}
+				onClick={e => e.stopPropagation()}
+			>
+				<div
+					className={classes.modalBtnClose}
+					onClick={() => setVisible(false)}
+				>
+					{CloseBtn.closeIcon}
+				</div>
+				<h2 className={classes.modalTitle}>{title}</h2>
+				{children}
+			</div>
+		</div>
 	)
 }
 
