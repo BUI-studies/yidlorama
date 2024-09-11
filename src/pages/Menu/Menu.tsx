@@ -11,7 +11,10 @@ const Menu = () => {
 	<>
 		<div className={classes.menu}>
 			<div className={classes.menuHeader}>
-				<AddButton action={() => console.log('Button was clicked')}/>
+				<AddButton 
+					type="button"
+					action={() => console.log('Button was clicked')}
+				/>
 				<h2 className={classes.menuHeaderTitle}>Menu</h2>
 			</div>
 			{dishGroups ? (
