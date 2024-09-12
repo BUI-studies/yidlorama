@@ -8,6 +8,7 @@
     left: 0;
     display: none;
     backdrop-filter: blur(1.5px);
+    background-color: rgba(0,0,0,0.7);
 
     &BtnClose{
         position: relative;
@@ -38,6 +39,7 @@
     &.active{
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: start;
+        padding-top: 113px;
     }
 }

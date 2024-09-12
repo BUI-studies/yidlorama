@@ -1,10 +1,10 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import classes from './Card.module.scss';
 
- type CardProps = {
+export type CardProps = {
   title: string;
   data: {
-    [k: string]: string;
+    [k: string]: string | number;
   }[];
  }
 
@@ -13,8 +13,8 @@ const Card: FC<CardProps> = ({title, data}) => {
         <div className={classes.card}>
           <h2 className={classes.cardTitle}>{title}</h2>
           <div className={classes.cardList}>
-            {data.map((item) => 
-              <div className={classes.cardListItem}>
+            {data.map((item, index) => 
+              <div className={classes.cardListItem} key={`${index}+${item.name}`}>
                 <p className={classes.cardListItemName}>{item.name}</p>
                 <p className={classes.cardListItemValue}>{item.price}</p>
               </div>

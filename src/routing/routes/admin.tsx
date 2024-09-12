@@ -1,6 +1,7 @@
 import { ADMIN_ROUTES_NAMES } from '../routes.names'
 import { Users, Menu, Tables, NewUser } from '@/pages'
 import { addNewUser } from '@/pages/NewUser/helper'
+import { getDishGroups } from '../../firebase/firestore'
 import PrivateRoute from '../PrivateRoute'
 import { getUsersData } from '@/firebase/firestore'
 
@@ -32,6 +33,7 @@ export default [
 				<Menu />
 			</PrivateRoute>
 		),
+		loader: getDishGroups
 	},
 	{
 		path: ADMIN_ROUTES_NAMES.TABLES,

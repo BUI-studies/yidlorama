@@ -4,7 +4,7 @@ import { AddButtonProps } from './types'
 import { Link } from 'react-router-dom'
 import classes from './AddButton.module.scss'
 
-const AddButton: FC<AddButtonProps> = ({action, type = 'button', to='/'}) => {
+const AddButton: FC<AddButtonProps> = ({action, type = 'button', to=''}) => {
     if(type === 'link' && !to) throw new Error('Link must have a destination')
     if(type === 'button' && to) throw new Error('Button should not have a destination')
 

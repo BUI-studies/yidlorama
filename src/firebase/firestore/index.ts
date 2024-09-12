@@ -1,7 +1,8 @@
-import { getFirestore, addDoc, collection, query, where, getDocs } from 'firebase/firestore'
+import { getFirestore, addDoc, collection, query, where, getDoc, getDocs, QuerySnapshot, DocumentReference } from 'firebase/firestore'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../auth'
 import { app } from '../main'
+import { Dish, DishGroup } from '../../types'
 import { UserRoleData } from './types'
 import { NewUserProps } from '@/pages/NewUser/helper'
 
@@ -81,4 +82,37 @@ export const getUsersData = async () => {
 	const usersData = usersSnapshot.docs.map(doc => doc.data())
 
 	return usersData
+}
+
+export const saveNewDishGroup = async (dishGroup:object): Promise<void> => {
+	try {
+		await addDoc(collection(db, 'dishGroups'), dishGroup)
+	} catch (error) {
+		throw new Error(`AN ERROR OCCURED: ${error}`)
+	}
+}
+
+// TODO: refactor
+export const getDishGroups = async (): Promise<DishGroup[]> => {
+	let dishGroups: DishGroup[] = []
+	const q = query(collection(db, 'dish-groups'))
+	
+	try {
+		const querySnapshot:QuerySnapshot = await getDocs(q)
+		
+		await Promise.all(querySnapshot.docs.map(async (doc) => {
+			const singleDishGroup = doc.data()
+			
+			const allDishes:Dish[] = await Promise.all(singleDishGroup.dishes.map(async (ref: DocumentReference) => {
+				const dishSnapshot = await getDoc(ref)
+				return dishSnapshot.data() as Dish
+			}))
+
+			dishGroups.push({...singleDishGroup, dishes: allDishes} as DishGroup)
+		}))
+
+		return dishGroups
+	} catch (error) {
+		throw new Error(`AN ERROR OCCURED: ${error}`)
+	}
 }
